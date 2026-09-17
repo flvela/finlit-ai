@@ -1,0 +1,54 @@
+[project]
+name = "finlit-ai"
+version = "0.0.1"
+authors = [
+  { name = "Flavia Vela" }
+]
+description = "A financial education multi-agent AI assistant. "
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICENSE*"]
+dependencies = [
+  "flake8",
+  "langgraph",
+  "langchain",
+  "langchain-anthropic",
+  "langchain-chroma",
+  "langchain-huggingface",
+  "langchain-openai",
+  "multi-key-dict",
+  "ipython",
+  "pylint",
+  "pytest",
+  "pytest-asyncio",
+  "pytest-cov",
+  "python-dotenv",
+  "sentence-transformers",
+  "streamlit",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.coverage.run]
+omit = [
+  # omit jupyter notebooks and streamlit pages
+  "src/jupyter/*",
+  "src/frontend/*"
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"  # Require explicit @pytest.mark.asyncio
+
+[tool.poetry]
+packages = [
+  { include="agents", from="src" },
+  { include="frontend", from="src" },
+  { include="tools", from="src" },
+]

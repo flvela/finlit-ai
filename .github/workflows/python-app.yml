@@ -1,0 +1,59 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  MODEL_PROVIDER: "anthropic"
+  MODEL_API_KEY: ${{secrets.MODEL_API_KEY}}
+  MODEL: "claude-haiku-4-5-20251001"
+  EMBEDDINGS_MODEL_PROVIDER: "huggingface"
+  EMBEDDINGS_MODEL_API_KEY: ${{secrets.EMBEDDINGS_MODEL_API_KEY}}
+  EMBEDDINGS_MODEL: "google/embeddinggemma-300m"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.11"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest pytest-cov
+        #install dependencies in pyproject.toml
+        pip install -e .
+    - name: Lint with flake8
+      run: |
+        # The GitHub editor is 127 chars wide
+        flake8 . --count --max-complexity=10 --max-line-length=127 --statistics --indent-size=2
+    - name: Lint with pylint
+      run: |
+        # pylint for src and tests folders
+        pylint  --indent-string='  ' --max-line-length=127  src
+        pylint  --indent-string='  ' --max-line-length=127  tests
+    - name: Test with pytest and coverage
+      run: |
+        pytest --cov=. --cov-report xml:coverage/coverage.xml
+    - name: Publish code coverage
+      uses: orgoro/coverage@v3
+      with:
+        coverageFile: coverage/coverage.xml
+        token: ${{secrets.GIT_HUB_TOKEN_KEY}}
+
+
