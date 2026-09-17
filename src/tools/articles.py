@@ -8,7 +8,7 @@ from langchain_core.documents import Document
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
 
-#Article constants
+# Article constants
 ARTICLE_NAME = "name"
 ARTICLE_CATEGORY = "category"
 ARTICLE_CONTENT = "content"
@@ -30,6 +30,7 @@ def load_article_documents(file_path: str) -> List[Document]:
     logger.info("loaded %d articles from %s file", len(items), file_path)
 
     return load_article_documents_from_json(items)
+
 
 def load_article_documents_from_json(json_documents: list[dict]):
   """
