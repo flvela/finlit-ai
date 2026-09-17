@@ -104,6 +104,8 @@ pytest tests/tools/test_config.py
 pytest
 ```
 
+## Project Structure
+```
 FINLIT-AI/                        #entire application
   .github/workflows               #github repo actions or workflows
     python-app.yml                #python pull request action for building, testing and code coverage
@@ -130,3 +132,4 @@ FINLIT-AI/                        #entire application
   LICENSE                         #license information
   pyproject.toml                  #python project file
   README.md                       #this file 
+```
