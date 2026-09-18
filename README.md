@@ -104,6 +104,12 @@ pytest tests/tools/test_config.py
 pytest
 ```
 
+### 7. Before checking in code (Developers only)
+Developer can run script before checking in code to run all static analysis and tests with code coverage
+```bash
+./scripts/run_checks.sh
+```
+
 ## Project Structure
 ```
 FINLIT-AI/                        #entire application
@@ -112,21 +118,39 @@ FINLIT-AI/                        #entire application
   data/                           #contains financial literacy data used by AI assisstant
     aicpa_article.json            #AICPA financial literacy articles
     investopedia_articles.json    #Investopedia financial literacy articles
+  scripts/                        #directory for useful project scripts
+    run_checks.sh                 #script to run static analysis and tests with code coverage
   src/                            #python source code
     agents/                       #python code related to LangGraph node, context schema and state
       __init__.py                 #package init file
+      context_schema.py           #LangGraph runtime context schema defining shared objects used by the nodes (ie. llm, tools, etc...)
+      finance_faq.py              #finance FAQ agent and prompt
+      graph.py                    #builds the FinLit LangGraph with all the agents
+      router.py                   #the router agent and prompt
+      state.py                    #the shared state that is passed between the LangGraph Nodes
     frontend/                     #streamlit application
+      __init__.py                 #package init file
+    testutils/                    #folder for unit testing utils and tools
+      __init__.py                 #package init file
+      common.py                   #common unit testing functions
     tools/                        #tools used for the agents to import sample data and config
       __init__.py                 #package init file
       articles.py                 #loads financial literacy articles used by AI assistant for agentic RAG
       config.py                   #gets the embeddings and chat model from the config .env file
+      logger.py                   #common logger that can be used by any python file to log to stdout
       vector_store.py             #Chroma DB store functionality for local persistence
     __init__.py                   #package init file
+    assistant.py                  #defines the FinLitAssistant
   tests/                          #python unit tests using pytest
-    agents/                       #agent unit tests 
+    agents/                       #agent unit tests
+      test_finance_faq.py         #tests for the finance FAQ agent
+      test_graph.py               #tests for the FinLit Graph
+      test_router.py              #tests for the router agent
     tools/                        #tools unit tests
+      test_articles.py            #tests for the financial articles functions and tools
       test_config.py              #config unit tests
       test_vector_store.py        #vector store unit tests
+    test_assistant.py             #test for the FinLit assistant
   .env.example                    #example config file
   .gitignore                      #git ignore file
   LICENSE                         #license information

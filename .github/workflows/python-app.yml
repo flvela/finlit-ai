@@ -49,7 +49,7 @@ jobs:
         pylint  --indent-string='  ' --max-line-length=127  tests
     - name: Test with pytest and coverage
       run: |
-        pytest --cov=. --cov-report xml:coverage/coverage.xml
+        pytest --cov=src --cov-report xml:coverage/coverage.xml
     - name: Publish code coverage
       uses: orgoro/coverage@v3
       with:

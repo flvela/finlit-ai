@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from langchain.chat_models import BaseChatModel
 from langchain_core.embeddings import Embeddings
 
+import pytest
 from tools.config import Config
 
 load_dotenv()
@@ -44,3 +45,17 @@ def test_config_post_init__():
     "openai": {"openai_api_key": config.embeddings_model_api_key}
   }
   assert config.embeddings_kw_args == expected_kw_args
+
+
+def test_langchain_embeddings_not_implemented():
+  """test the not implemented exception handling for langchain_embedding """
+  config = Config(embeddings_model_provider="unknown-provider")
+  with pytest.raises(NotImplementedError):
+    config.get_langchain_embeddings()
+
+
+def test_chromadb_embeddings_not_implemented():
+  """test the not implemented exception handling for langchain_embedding """
+  config = Config(embeddings_model_provider="unknown-provider")
+  with pytest.raises(NotImplementedError):
+    config.get_chromadb_embeddings()
