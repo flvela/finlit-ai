@@ -10,7 +10,7 @@ from tools.articles import (
 
 test_article_data = [
   ('data/aicpa_articles.json', 39),
-  ('data/investopedia_articles.json', 29)
+  ('data/investopedia_articles.json', 36)
 ]
 
 
