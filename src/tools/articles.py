@@ -1,12 +1,13 @@
 """tools to load and search financial articles"""
 import json
-import logging
 from typing import List
 
+from langchain.tools import ToolRuntime, tool
 from langchain_core.documents import Document
 
-logger = logging.getLogger(__name__)
-logger.addHandler(logging.StreamHandler())
+from tools.logger import get_logger
+
+logger = get_logger(__name__)
 
 # Article constants
 ARTICLE_NAME = "name"
@@ -51,3 +52,25 @@ def load_article_documents_from_json(json_documents: list[dict]):
                    })
     documents.append(doc)
   return documents
+
+
+@tool("search_finance_articles", description="Search for financial education articles based on a query.")
+def search_finance_articles(query: str, runtime: ToolRuntime):
+  """
+  Search for financial education articles based on a query and return the top 3 most similar items
+  from the vector store.
+
+  Args:
+    query (str): The search query.
+    runtime (ToolRuntime): The runtime environment for the tool.
+  """
+  logger.info("searching finance articles by %s", query)
+  logger.debug("graph state: %s", runtime.state)
+  documents = runtime.context.article_collection.similarity_search(query, k=3)
+  if not documents:
+    return []
+
+  output = f'Top {len(documents)} matches for {query}:\n\n'
+  for document in documents:
+    output += document.page_content + "\n---\n" + document.metadata[ARTICLE_URL]
+  return output
