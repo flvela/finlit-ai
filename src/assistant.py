@@ -4,7 +4,7 @@ from typing import List
 import uuid
 
 from langchain_core.documents import Document
-from langgraph.graph.state import CompiledStateGraph
+from langgraph.graph.state import Command, CompiledStateGraph
 
 from agents.context_schema import ContextSchema
 from agents.graph import build_graph
@@ -26,6 +26,7 @@ class FinLitAssistant:
   vector_store: VectorStore
   thread_id: str
   financial_articles: List[Document]
+  is_interrupted: bool
 
   def __init__(self,
                financial_articles: List[Document],
@@ -37,10 +38,22 @@ class FinLitAssistant:
     article_collection = self.vector_store.get_create_collection(financial_articles, config=config)
     self.graph, self.context = build_graph(finance_article_collection=article_collection, llm=config.get_llm())
     self.thread_id = str(uuid.uuid4())
+    self.is_interrupted = False
 
   def reset(self):
     """resets the graph state and conversation"""
     self.thread_id = str(uuid.uuid4())
+
+  def get_interrupt_value(self) -> bool:
+    """if the graph was interrupted due to a HITL interrupt it
+    returns the prompt value to user
+    """
+    config = {"configurable": {"thread_id": self.thread_id}}
+    snapshot = self.graph.get_state(config)
+
+    for interrupt in snapshot.interrupts:
+      return interrupt.value
+    return None
 
   def ask(self, query: str):
     """invokes finlit graph with user query.
@@ -50,15 +63,25 @@ class FinLitAssistant:
       query: the original user query to send to the graph
     """
     logger.info("Ask %s", query)
-    graph_input = {
-      "user_input": query,
-      "messages": [],
-      "output": "",
-      "route": ""}
+    if self.is_interrupted:
+      graph_input = Command(resume=query)
+      self.is_interrupted = False
+      logger.info("Resuming graph with query %s", query)
+    else:
+      graph_input = {
+        "user_input": query,
+        "messages": [],
+        "output": "",
+        "route": ""}
 
     config = {"configurable": {"thread_id": self.thread_id}}
     result = self.graph.invoke(graph_input, config, context=self.context)
     logger.info("result %s", result)
+
+    interrupt_value = self.get_interrupt_value()
+    if interrupt_value is not None:
+      self.is_interrupted = True
+      return interrupt_value
 
     return result.get(OUTPUT_FIELD, DEFAULT_ANSWER)
 
@@ -69,12 +92,19 @@ class FinLitAssistant:
     Args:
       query: the original user query to send to the graph
     """
-    logger.info("Async Ask %s", query)
-    graph_input = {
-        "user_input": query,
-        "messages": [],
-        "output": "",
-        "route": ""}
+    interrupted_value = self.get_interrupt_value()
+    logger.info("Async Ask %s interrupted_value %s", query, interrupted_value)
+
+    if interrupted_value is not None:
+      graph_input = Command(resume=query)
+      self.is_interrupted = False
+      logger.info("Resuming graph with query %s", query)
+    else:
+      graph_input = {
+          "user_input": query,
+          "messages": [],
+          "output": "",
+          "route": ""}
 
     config = {"configurable": {"thread_id": self.thread_id}}
     return self.graph.astream_events(graph_input, config, context=self.context, version="v2")

@@ -9,8 +9,74 @@
 > A financial education multi-agent AI assistant that specialized in Financial Literarcy and Investment insights.
 
 ## Table of Contents
-1. [Quick Start](#-quick-start)
-2. [Project Structure](#project-structure)
+1. [Architecture](#architecture)
+2. [Tech Stack](#tech-stack)
+2. [Quick Start](#-quick-start)
+3. [Project Structure](#project-structure)
+
+## Architecture
+### High Level System
+The high level system diagram belowe depics how user queries and provided data flow through the FinLit AI assistant.
+
+```mermaid
+flowchart LR
+  User([User])
+  UI[Streamlit UI <br/> src/frontend/app.py]
+  Assistant[LangGraph Assistant <br/> src/assistant.py]
+  FinLitGraph[Graph <br/> Router, Finance FAQ and Tool Nodes <br/> src/graph.py]
+  ArticlesDB[(Finance Articles DB <br/> src/tools/vector_store.py)]
+  ModelProvider@{ shape: cloud, label: "Third party model API <br/> src/.env or UI config"}
+
+  User -->|1. configures application| UI
+  User -->|5. asks a question| UI
+  UI -->|2. creates finance articles DB| ArticlesDB
+  UI -->|3. initializes assistant| Assistant
+  UI -->|6. asks with user input| Assistant
+  Assistant -->|4. builds | FinLitGraph
+  Assistant -->|7. queries with user input| FinLitGraph
+  FinLitGraph -->|8.b queries DB using Finance FAQ Agent tool| ArticlesDB
+  FinLitGraph -->|8.a prompts LLM using model provider API| ModelProvider
+```
+### Question Flowchart
+The flow chart below shows what happens when a user asks a single question. 
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor User
+  participant UI as Streamlit UI
+  participant Assistant as FinLit Assistant
+  participant FinLitGraph as FinLit Graph
+  participant RouterNode as Router Agent
+  participant FinanceFaqNode as Finance FAQ Agent
+  participant FinanceFaqToolNode as Finance FAQ Tool Node
+  participant ArticleDB as Finance Articles DB
+
+  User->>UI: asks question
+  UI->>Assistant: asks
+  Assistant->>FinLitGraph: queries 
+  FinLitGraph->>RouterNode: sends user prompt
+  alt finance faq question
+    RouterNode->>FinanceFaqNode: routes user prompt
+    FinanceFaqNode->>FinanceFaqToolNode: search articles
+    FinanceFaqToolNode->>ArticleDB: semantic search
+    ArticleDB-->>FinanceFaqToolNode: article results
+    FinanceFaqToolNode-->>FinanceFaqNode: article results
+    FinanceFaqNode->>FinanceFaqNode: summarizes article results
+    FinanceFaqNode-->>FinLitGraph: final response
+  end
+  FinLitGraph-->>Assistant: final response
+  Assistant-->>UI: update conversation with final response
+```
+
+## Tech Stack
+
+| Layer              | Tool                                                     | Why it is here                                                              |
+| ------------------ | -------------------------------------------------------- | --------------------------------------------------------------------------- |
+|UI                  | [Streamlit](https://streamlit.io)                        | Zero-boilerplate web app. One file, top to bottom.                          |
+|Agent framework     | [LangChain](https://www.langchain.com)                   | Generic way of creating AI agents and tools. Supports OpenAI, Anthropic, Google and more |
+|Agent orchestration | [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview)| Orchestration framework and runtime for managing, build and deploying stateful agents|
+|Vector DB           | [ChromaDB](https://docs.trychroma.com/) | Open source vector database supporting semantic and metadata search
 
 ## 🚀 Quick Start
 
@@ -104,7 +170,12 @@ pytest tests/tools/test_config.py
 pytest
 ```
 
-### 7. Before checking in code (Developers only)
+### 7 Run Streamlit application
+```
+streamlit run src/frontend/app.py
+```
+
+### 8. (Developers Optional) Before raising PR or checking in code
 Developer can run script before checking in code to run all static analysis and tests with code coverage
 ```bash
 ./scripts/run_checks.sh

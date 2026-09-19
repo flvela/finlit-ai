@@ -41,7 +41,13 @@ def finance_faq_node(state: FinLitState, runtime: Runtime[ContextSchema]) -> Fin
   if result.tool_calls:
     return {MESSAGES_FIELD: [*messages, result] if not state.get(MESSAGES_FIELD) else [result]}
 
-  return {OUTPUT_FIELD: result.content, MESSAGES_FIELD: [AIMessage(content=result.content)]}
+  output_text = result.content
+  if isinstance(result.content, list):
+    content = result.content[0]
+    if isinstance(content, dict) and 'text' in content:
+      output_text = content['text']
+
+  return {OUTPUT_FIELD: output_text, MESSAGES_FIELD: [AIMessage(content=result.content)]}
 
 
 def finance_faq_should_continue(state: FinLitState) -> str:
