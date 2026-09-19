@@ -26,7 +26,7 @@ def init_assistant():
 
 @pytest.mark.parametrize("query, expected_answer_strings", test_data)
 def test_ask(query: str, expected_answer_strings: list[str]):
-  """unit test for ask method of SnackStackAssistant"""
+  """unit test for ask method of FinLitAssistant"""
   assistant = init_assistant()
   answer = assistant.ask(query)
   logger.info("FinLitAssistant answer %s", answer)
