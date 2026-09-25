@@ -11,7 +11,7 @@ from agents.graph import (
   build_graph
 )
 
-from tools.articles import ARTICLE_COLLECTION_NAME, load_article_documents
+from tools.articles import ARTICLE_COLLECTION_NAME, DEMO_ARTICLES, load_article_documents
 from tools.config import Config
 from tools.logger import get_logger
 from tools.vector_store import PERSIST_DIRECTORY, VectorStore
@@ -38,8 +38,8 @@ def test_build_graph():
     }
   }
 
-  articles = load_article_documents("data/aicpa_articles.json")
-  articles.extend(load_article_documents("data/investopedia_articles.json"))
+  articles = load_article_documents(DEMO_ARTICLES[0])
+  articles.extend(load_article_documents(DEMO_ARTICLES[1]))
   vector_store = VectorStore(persist_directory=PERSIST_DIRECTORY, collection_name=ARTICLE_COLLECTION_NAME)
   article_collection = vector_store.get_create_collection(articles)
   config = Config()

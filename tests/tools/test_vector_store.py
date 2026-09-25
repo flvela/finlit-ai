@@ -2,7 +2,7 @@
 import shutil
 
 from chromadb.api import ClientAPI
-from tools.articles import ARTICLE_COLLECTION_NAME, load_article_documents
+from tools.articles import ARTICLE_COLLECTION_NAME, DEMO_ARTICLES, load_article_documents
 from tools.vector_store import PERSIST_DIRECTORY, VectorStore
 
 
@@ -17,7 +17,7 @@ def test_constructor():
 def test_create_vector_store():
   """test_create_vector_store test"""
   vector_store = VectorStore(PERSIST_DIRECTORY, ARTICLE_COLLECTION_NAME)
-  documents = load_article_documents('data/aicpa_articles.json')
+  documents = load_article_documents(DEMO_ARTICLES[0])
   collection = vector_store.get_create_collection(documents)
   test_chroma_store_data = [("Budgets", 3), ("Stock", 5)]
   try:

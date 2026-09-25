@@ -12,19 +12,18 @@ FINLIT_ASSISTANT_CONFIG = "finlit_assistant"
 FINANCE_ARTICLE_FILES_CONFIG = "finance_article_files"
 GRAPH_ACTIVITY_CONFIG = "graph_activity_config"
 FINANCE_ARTICLES_CONFIG = "finance_articles"
+PORTFOLIO_MANAGER_CONFIG = "portfolio_manager"
 REQUIRED_CONFIG = [
   MODEL_CONFIG,
   MODEL_PROVIDER_CONFIG,
   MODEL_API_KEY_CONFIG,
   EMBEDDINGS_MODEL_PROVIDER_CONFIG,
   EMBEDDINGS_MODEL_API_KEY_CONFIG,
-  EMBEDDINGS_MODEL_CONFIG,
-  FINANCE_ARTICLE_FILES_CONFIG
+  EMBEDDINGS_MODEL_CONFIG
 ]
 CONFIG_FAILED = "config_failed"
-
 CONFIG_ERROR_MESSAGE = "config_error_messages"
-FINANCE_ARTICLE_FILES = ["data/aicpa_articles.json", "data/investopedia_articles.json"]
+FINANCE_ARTICLE_FILES = ["data/finance_edu/aicpa_articles.json", "data/finance_edu/investopedia_articles.json"]
 
 
 def setting_exists(setting_name: str):

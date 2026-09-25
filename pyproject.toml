@@ -14,6 +14,7 @@ classifiers = [
 license = "MIT"
 license-files = ["LICENSE*"]
 dependencies = [
+  "cachetools",
   "flake8",
   "langgraph",
   "langchain",
@@ -30,6 +31,7 @@ dependencies = [
   "python-dotenv",
   "sentence-transformers",
   "streamlit",
+  "torchvision",
 ]
 
 [build-system]
