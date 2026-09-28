@@ -5,12 +5,13 @@ from tools.articles import (
   ARTICLE_CATEGORY,
   ARTICLE_NAME,
   ARTICLE_URL,
+  DEMO_ARTICLES,
   load_article_documents
 )
 
 test_article_data = [
-  ('data/aicpa_articles.json', 39),
-  ('data/investopedia_articles.json', 36)
+  (DEMO_ARTICLES[0], 39),
+  (DEMO_ARTICLES[1], 36)
 ]
 
 

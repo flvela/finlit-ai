@@ -16,6 +16,8 @@ ARTICLE_CONTENT = "content"
 ARTICLE_URL = "url"
 ARTICLE_COLLECTION_NAME = "financial_literarcy_articles"
 
+DEMO_ARTICLES = ["data/finance_edu/aicpa_articles.json", "data/finance_edu/investopedia_articles.json"]
+
 
 def load_article_documents(file_path: str) -> List[Document]:
   """

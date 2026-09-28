@@ -10,6 +10,7 @@ from frontend.utils.common import (
   is_config_complete
 )
 from frontend.components.fin_lit_container import FinLitActivityContainer
+from frontend.components.ui_config import configure_application
 
 # chat roles
 ASSISTANT_ROLE = "assistant"
@@ -77,9 +78,11 @@ def async_ai_assistant_page():
   st.set_page_config(layout="wide")
 
   st.header("Snack Stack AI Assistant", text_alignment="center")
-  st.divider()
 
-  if is_config_complete() and FINLIT_ASSISTANT_CONFIG in st.session_state:
+  if is_config_complete():
+    if FINLIT_ASSISTANT_CONFIG not in st.session_state:
+      configure_application()
+
     col1, col2 = st.columns([2, 1])
     col1.subheader("Conversation")
     col2.subheader("Graph Activity")

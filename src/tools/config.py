@@ -11,28 +11,41 @@ from chromadb.utils.embedding_functions import HuggingFaceEmbeddingFunction, Ope
 
 load_dotenv()  # Load environment variables from .env file
 
+HUGGING_FACE_CONFIG = "huggingface"
+OPEN_AI_CONFIG = "openai"
+
+MODEL_PROVIDER = "MODEL_PROVIDER"
+MODEL = "MODEL"
+MODEL_API_KEY = "MODEL_API_KEY"
+EMBEDDINGS_MODEL_PROVIDER = "EMBEDDINGS_MODEL_PROVIDER"
+EMBEDDINGS_MODEL = "EMBEDDINGS_MODEL"
+EMBEDDINGS_MODEL_API_KEY = "EMBEDDINGS_MODEL_API_KEY"
+CHROMA_HUGGINGFACE_API_KEY = "CHROMA_HUGGINGFACE_API_KEY"
+
 
 @dataclass
 class Config:
   """represent config for the application"""
-  model_provider: str = os.getenv("MODEL_PROVIDER")
-  model_name: str = os.getenv("MODEL")
-  model_api_key: str = os.getenv("MODEL_API_KEY")
-  embeddings_model_provider: str = os.getenv("EMBEDDINGS_MODEL_PROVIDER")
-  embeddings_model_name: str = os.getenv("EMBEDDINGS_MODEL")
-  embeddings_model_api_key: str = os.getenv("EMBEDDINGS_MODEL_API_KEY")
+  model_provider: str = os.getenv(MODEL_PROVIDER)
+  model_name: str = os.getenv(MODEL)
+  model_api_key: str = os.getenv(MODEL_API_KEY)
+  embeddings_model_provider: str = os.getenv(EMBEDDINGS_MODEL_PROVIDER)
+  embeddings_model_name: str = os.getenv(EMBEDDINGS_MODEL)
+  embeddings_model_api_key: str = os.getenv(EMBEDDINGS_MODEL_API_KEY)
   embeddings_by_provider = {
-    "huggingface": HuggingFaceEmbeddingFunction,
-    "openai": OpenAIEmbeddingFunction
+    HUGGING_FACE_CONFIG: HuggingFaceEmbeddingFunction,
+    OPEN_AI_CONFIG: OpenAIEmbeddingFunction
   }
   embeddings_kw_args = {}
 
   def __post_init__(self):
     """Gets the kwargs for init_embeddings based on provider and api key"""
     self.embeddings_kw_args = {
-      "huggingface": {"model_kwargs": {"token": self.embeddings_model_api_key}},
-      "openai": {"openai_api_key": self.embeddings_model_api_key}
+      HUGGING_FACE_CONFIG: {"model_kwargs": {"token": self.embeddings_model_api_key}},
+      OPEN_AI_CONFIG: {"openai_api_key": self.embeddings_model_api_key}
     }
+    if self.embeddings_model_provider == HUGGING_FACE_CONFIG:
+      os.environ[CHROMA_HUGGINGFACE_API_KEY] = self.embeddings_model_api_key
 
   def get_langchain_embeddings(self) -> Embeddings:
     """
@@ -58,7 +71,7 @@ class Config:
     """
     if self.embeddings_model_provider in self.embeddings_by_provider:
       return self.embeddings_by_provider[self.embeddings_model_provider](
-        api_key=self.embeddings_model_api_key,
+        api_key_env_var=EMBEDDINGS_MODEL_API_KEY,
         model_name=self.embeddings_model_name)
 
     raise NotImplementedError(

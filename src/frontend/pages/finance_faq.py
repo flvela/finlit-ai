@@ -8,10 +8,8 @@ from frontend.utils.common import (
   FINANCE_ARTICLE_FILES_CONFIG
 )
 
-
 st.header("FinLit Financial FAQ articles", text_alignment="center")
-st.divider()
-
+st.set_page_config(layout="wide")
 
 if FINANCE_ARTICLE_FILES_CONFIG in st.session_state and st.session_state[FINANCE_ARTICLE_FILES_CONFIG] is not None:
   financial_article_files = st.session_state[FINANCE_ARTICLE_FILES_CONFIG]

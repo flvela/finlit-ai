@@ -1,26 +1,22 @@
 """Unit tests for FinLit AI assistant"""
 import pytest
 from assistant import FinLitAssistant
-from tools.articles import load_article_documents
+from tools.articles import DEMO_ARTICLES, load_article_documents
 from tools.logger import get_logger
 
 
 test_data = [
   # user finance faq agent test
-  ("what is the difference between RSU and ESPP",
-   ["ESPP", "RSU"])
+  ("what is the difference between RSU and ESPP", ["ESPP", "RSU"])
 ]
-
-ARTICLE_FILE_1 = "data/aicpa_articles.json"
-ARTICLE_FILE_2 = "data/investopedia_articles.json"
 
 logger = get_logger(__name__)
 
 
 def init_assistant():
   """function to create the FinLitAssistant for testing"""
-  financial_articles = load_article_documents(ARTICLE_FILE_1)
-  financial_articles.extend(load_article_documents(ARTICLE_FILE_2))
+  financial_articles = load_article_documents(DEMO_ARTICLES[0])
+  financial_articles.extend(load_article_documents(DEMO_ARTICLES[1]))
   return FinLitAssistant(financial_articles=financial_articles)
 
 

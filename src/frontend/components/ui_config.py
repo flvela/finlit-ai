@@ -162,9 +162,6 @@ class UIConfig:
       if CONFIG_FAILED in st.session_state and st.session_state[CONFIG_FAILED]:
         st.warning(config_missing_message())
 
-      if is_config_complete():
-        configure_application()
-
 
 def clear_model_api_key():
   """reset the model api key"""
@@ -179,16 +176,6 @@ def clear_embeddings_model_api_key():
 def configure_application():
   """reset the application configuration"""
   st.session_state.pop(CONFIG_ERROR_MESSAGE, None)
-  try:
-    finance_articles = []
-    st.session_state[FINANCE_ARTICLE_FILES_CONFIG] = FINANCE_ARTICLE_FILES
-    for file in FINANCE_ARTICLE_FILES:
-      finance_articles.extend(load_article_documents(file))
-
-    st.session_state[FINANCE_ARTICLES_CONFIG] = finance_articles
-  except KeyError as e:
-    st.session_state[CONFIG_ERROR_MESSAGE] = f"Failed to load finance articles '{FINANCE_ARTICLE_FILES}'. KeyError: {str(e)}"
-    st.session_state[CONFIG_FAILED] = True
 
   if is_config_complete():
     st.session_state[CONFIG_FAILED] = False
@@ -199,9 +186,27 @@ def configure_application():
     st.session_state[CONFIG_FAILED] = True
 
 
+def load_finance_articles():
+  """loads the financial education articles used by the FinLit AI assistant"""
+  if FINANCE_ARTICLES_CONFIG not in st.session_state:
+    # only load finance articles once
+    try:
+      finance_articles = []
+      st.session_state[FINANCE_ARTICLE_FILES_CONFIG] = FINANCE_ARTICLE_FILES
+      for file in FINANCE_ARTICLE_FILES:
+        finance_articles.extend(load_article_documents(file))
+
+      st.session_state[FINANCE_ARTICLES_CONFIG] = finance_articles
+    except KeyError as e:
+      st.session_state[CONFIG_ERROR_MESSAGE] = f"Failed to load finance articles '{FINANCE_ARTICLE_FILES}'. KeyError: {str(e)}"
+      st.session_state[CONFIG_FAILED] = True
+      return None
+  return st.session_state[FINANCE_ARTICLES_CONFIG]
+
+
 def initialize_assisstant():
   """initializes the AI Assistant"""
-  articles = st.session_state[FINANCE_ARTICLES_CONFIG]
+  articles = load_finance_articles()
   st.info(st.session_state)
   app_config = Config(
     model_provider=MODEL_PROVIDER_LABEL_TO_CONFIG[st.session_state[MODEL_PROVIDER_CONFIG]],
