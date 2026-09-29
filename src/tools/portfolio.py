@@ -9,7 +9,14 @@ from dotenv import load_dotenv
 import pandas as pd
 
 from tools.logger import get_logger
-from tools.alpha_vantage_client import CLOSE_COLUMN, DATE_KEY, AlphaVantageClient
+from tools.alpha_vantage_client import (
+  CLOSE_COLUMN,
+  DATE_KEY,
+  PERSIST_DIRECTORY,
+  AlphaVantageClient,
+  TreasuryYieldInterval,
+  TreasuryYieldMaturity
+)
 
 logger = get_logger(__name__)
 
@@ -110,8 +117,11 @@ class PortfolioManager:
   portfolio_store: CSVPortfolioStore
   last_update_time_series: datetime
 
-  def __init__(self, alpha_vantage_key=os.getenv("ALPHA_VANTAGE_KEY"), portfolio_csv=PORTFOLIO_PERSISTANCE_CSV):
-    self.alpha_vantage_client = AlphaVantageClient(api_key=alpha_vantage_key)
+  def __init__(self,
+               alpha_vantage_key=os.getenv("ALPHA_VANTAGE_KEY"),
+               portfolio_csv=PORTFOLIO_PERSISTANCE_CSV,
+               persist_directory=PERSIST_DIRECTORY):
+    self.alpha_vantage_client = AlphaVantageClient(api_key=alpha_vantage_key, persist_directory=persist_directory)
     self.portfolio_store = CSVPortfolioStore(portfolio_csv=portfolio_csv)
     self.last_update_time_series = datetime.now()
 
@@ -123,8 +133,8 @@ class PortfolioManager:
     """import data into the portfolio"""
     self.portfolio_store.import_csv(csv_data)
 
-  def get_time_series_daily(self):
-    """gets the latest time_series_daily update for the tickers in the portfolio"""
+  def get_all_time_series_daily(self):
+    """gets the latest time_series_daily update for all the tickers in the portfolio"""
     self.last_update_time_series = datetime.now()
     portfolio_df = self.portfolio_store.df
     tickers = portfolio_df[TICKER_COLUMN].unique()
@@ -154,7 +164,7 @@ class PortfolioManager:
     """gets the portfolio summary Dataframe by merging the time series daily with portfolio"""
     portfolio_df = self.get_portfolio_with_running_total_shares()
     portfolio_df = portfolio_df.rename(columns={PURCHASE_DATE_COLUMN: DATE_KEY})
-    times_series_df = self.get_time_series_daily()
+    times_series_df = self.get_all_time_series_daily()
     times_series_df = pd.merge(times_series_df, portfolio_df, on=[TICKER_COLUMN, DATE_KEY], how="outer", indicator=True)
     times_series_df[RUNNING_SHARES_TOTAL_COLUMN] = times_series_df[RUNNING_SHARES_TOTAL_COLUMN].ffill()
     times_series_df = times_series_df.drop(times_series_df[times_series_df[MERGE_COLUMN] == "right_only"].index)
@@ -166,7 +176,7 @@ class PortfolioManager:
     """gets the portfolio_positions with todays prices"""
     portfolio_df = self.get_portfolio()
     logger.info("fetched portfolio of size %d", len(portfolio_df))
-    time_series_df = self.get_time_series_daily()
+    time_series_df = self.get_all_time_series_daily()
     latest_time = time_series_df[DATE_KEY].max()
     logger.info("fected times_series_daily with %d entries and latest time %s", len(time_series_df), latest_time)
     time_series_df = time_series_df[time_series_df[DATE_KEY] == latest_time]
@@ -183,3 +193,27 @@ class PortfolioManager:
     )
     logger.info("fetched %d portfolio position", len(portfolio_postions_df))
     return portfolio_postions_df.reset_index()
+
+  def get_company_logo(self, ticker):
+    """get the company logo for a given ticker"""
+    return self.alpha_vantage_client.company_logo(ticker)
+
+  def get_overview(self, ticker):
+    """get the company overview for a given ticker"""
+    return self.alpha_vantage_client.overview(ticker)
+
+  def get_news_sentiment(self, ticker):
+    """get the news for the related given ticker"""
+    return self.alpha_vantage_client.news_sentiment(ticker)
+
+  def get_global_quote(self, ticker):
+    """get the quote for a given ticker"""
+    return self.alpha_vantage_client.global_quote(ticker)
+
+  def get_time_series_daily(self, ticker):
+    """get the time series daily for a given ticker"""
+    return self.alpha_vantage_client.time_series_daily(ticker)
+
+  def get_treasury_yield(self, maturity: TreasuryYieldMaturity, interval: TreasuryYieldInterval):
+    """get the US treasury yield for the given maturity and interval"""
+    return self.alpha_vantage_client.get_treasury_yield(maturity=maturity, interval=interval)

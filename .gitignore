@@ -16,3 +16,6 @@ coverage/
 .DS_STORE
 
 .vscode
+
+*real_data/
+logs/

@@ -1,0 +1,2334 @@
+{
+  "items": "50",
+  "sentiment_score_definition": "x <= -0.35: Bearish; -0.35 < x <= -0.15: Somewhat-Bearish; -0.15 < x < 0.15: Neutral; 0.15 <= x < 0.35: Somewhat_Bullish; x >= 0.35: Bullish",
+  "relevance_score_definition": "0 < x <= 1, with a higher score indicating higher relevance.",
+  "feed": [
+    {
+      "title": "Be Careful With Coca-Cola Right Now",
+      "url": "https://247wallst.com/investing/2026/09/28/be-careful-with-coca-cola-right-now/",
+      "time_published": "20260928T131505",
+      "authors": [
+        "Alex Sirois"
+      ],
+      "summary": "Coca-Cola has shown strong performance with consistent earnings beats, dividend increases, and outperformance against the S&P 500. However, despite its excellent operational results, the stock's current valuation, including a PEG ratio of 4 and a high price-to-free cash flow, suggests investors are paying a premium for mid-single-digit growth. Upcoming challenges like fewer calendar days in Q4 and the African bottling sale could pressure second-half results, making the present a potentially less opportune time for new investors to buy at its current price.",
+      "banner_image": "https://247wallst.com/wp-content/uploads/2019/01/imageforentry4-50f.jpg",
+      "source": "24/7 Wall St.",
+      "category_within_source": "General",
+      "source_domain": "24/7 Wall St.",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.907913"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.840365"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.712591"
+        },
+        {
+          "topic": "economy_macro",
+          "relevance_score": "0.610692"
+        },
+        {
+          "topic": "retail_wholesale",
+          "relevance_score": "0.613467"
+        }
+      ],
+      "overall_sentiment_score": 0.038723,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "KO",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "-0.240229",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "PEP",
+          "relevance_score": "0.612027",
+          "ticker_sentiment_score": "0.136286",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.627983",
+          "ticker_sentiment_score": "0.227862",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        }
+      ]
+    },
+    {
+      "title": "Nvidia boosts share buyback by record $150 billion",
+      "url": "https://www.rte.ie/news/business/2026/0928/1593217-nvidia-share-buyback/",
+      "time_published": "20260928T124410",
+      "authors": [],
+      "summary": "Nvidia has significantly increased its share buyback authorization by $150 billion, bringing its total buyback capacity to $235 billion through fiscal 2028. This move, which surpasses Apple's previous record, is fueled by strong cash generation from the surging demand for AI technologies. CEO Jensen Huang emphasized that this allows the company to invest in technological advancements and return capital to shareholders.",
+      "banner_image": "https://www.rte.ie/images/00246ea3-500.jpg",
+      "source": "RTE.ie",
+      "category_within_source": "General",
+      "source_domain": "RTE.ie",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.915772"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.809086"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.748756"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.648154"
+        }
+      ],
+      "overall_sentiment_score": 0.294442,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "NVDA",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.404678",
+          "ticker_sentiment_label": "Bullish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.739308",
+          "ticker_sentiment_score": "0.103711",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Adobe: U.S. Holiday Shopping Season to Hit Record $275.1 Billion Online, Rising 6.7% YoY",
+      "url": "https://news.adobe.com/news/2026/09/adobe-us-holiday-shopping-season-to-hit-record",
+      "time_published": "20260928T123736",
+      "authors": [],
+      "summary": "Adobe forecasts a record-breaking U.S. online holiday shopping season in 2026, reaching $275.1 billion, a 6.7% increase year-over-year. Cyber Monday is expected to be the biggest online shopping day with $15.1 billion in sales, while Black Friday will see stronger growth due to earlier discounts. Consumers are leveraging competitive deals on essentials, and new payment methods like Buy Now Pay Later, alongside AI tools and social influencers, continue to shape shopping behavior.",
+      "banner_image": null,
+      "source": "Adobe Newsroom",
+      "category_within_source": "General",
+      "source_domain": "Adobe Newsroom",
+      "topics": [
+        {
+          "topic": "retail_wholesale",
+          "relevance_score": "0.913979"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.705714"
+        },
+        {
+          "topic": "economy_macro",
+          "relevance_score": "0.612367"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.642950"
+        }
+      ],
+      "overall_sentiment_score": 0.463301,
+      "overall_sentiment_label": "Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "ADBE",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.807403",
+          "ticker_sentiment_label": "Bullish"
+        },
+        {
+          "ticker": "AMZN",
+          "relevance_score": "0.733622",
+          "ticker_sentiment_score": "0.438105",
+          "ticker_sentiment_label": "Bullish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.649378",
+          "ticker_sentiment_score": "0.337904",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "WMT",
+          "relevance_score": "0.625493",
+          "ticker_sentiment_score": "0.339944",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        }
+      ]
+    },
+    {
+      "title": "INTC Stock Pulls Back As Apple Moves Further Away From Intel",
+      "url": "https://stockstotrade.com/news/intel-corporation-intc-news-2026_09_28-2/",
+      "time_published": "20260928T123325",
+      "authors": [
+        "TIM BOHEN"
+      ],
+      "summary": "Intel Corporation (INTC) stock experienced a pullback, trading down by -2.37%, following reports of major delays in its next-generation chip roadmap. This comes as Apple further signals its departure from Intel chips, telling Mac App Store developers they may remove support for Intel-based Macs in apps requiring macOS 13 or later. The stock's recent volatility, including a 9.1% surge followed by premarket profit-taking, highlights its \"battleground\" status for active traders amidst its rebuilding phase and negative earnings.",
+      "banner_image": "https://content.stockstotrade.com/wp-content/uploads/2026/09/intc-stock-pulls-back-as-apple-moves-further-away-from-intel.jpg",
+      "source": "StocksToTrade",
+      "category_within_source": "General",
+      "source_domain": "StocksToTrade",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.801067"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.941976"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "1.000000"
+        }
+      ],
+      "overall_sentiment_score": -0.284307,
+      "overall_sentiment_label": "Somewhat-Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "INTC",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "-0.364673",
+          "ticker_sentiment_label": "Bearish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.715899",
+          "ticker_sentiment_score": "-0.201993",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        }
+      ]
+    },
+    {
+      "title": "INTC Stock Slides After Rally As Apple Cuts Legacy Ties",
+      "url": "https://www.timothysykes.com/news/intel-corporation-intc-news-2026_09_28/",
+      "time_published": "20260928T114633",
+      "authors": [
+        "TIM SYKES"
+      ],
+      "summary": "Intel Corporation (INTC) stock is experiencing a slide after a significant rally, driven by classic profit-taking and increased volatility. This follows Apple's decision to allow Mac App Store developers to drop support for Intel-based Macs on newer macOS versions, signaling a further reduction of Intel's presence in the Mac ecosystem. Despite strong recent stock performance, Intel faces ongoing challenges with negative profit margins and heavy restructuring costs, though its balance sheet shows solid liquidity for its AI and foundry roadmaps.",
+      "banner_image": "https://content.timothysykes.com/wp-content/uploads/2026/09/intc-stock-slides-after-rally-as-apple-cuts-legacy-ties.jpg",
+      "source": "Timothy Sykes",
+      "category_within_source": "General",
+      "source_domain": "Timothy Sykes",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.910780"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.833920"
+        },
+        {
+          "topic": "earnings",
+          "relevance_score": "0.728258"
+        }
+      ],
+      "overall_sentiment_score": -0.228926,
+      "overall_sentiment_label": "Somewhat-Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "INTC",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "-0.246893",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.732408",
+          "ticker_sentiment_score": "-0.220062",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        }
+      ]
+    },
+    {
+      "title": "INTC Slides After Big Rally As Apple Cuts More Mac Ties",
+      "url": "https://stockstotrade.com/news/intel-corporation-intc-news-2026_09_28/",
+      "time_published": "20260928T114633",
+      "authors": [
+        "TIM BOHEN"
+      ],
+      "summary": "Intel Corporation (INTC) shares dipped after a recent rally, influenced by Apple allowing developers to drop support for Intel-based Macs. Despite a messy financial picture with a net loss, Intel shows strong cash flow, funding its costly transition. This volatility and strategic shift create opportunities for short-term traders, who are advised to focus on price action and manage risk.",
+      "banner_image": "https://content.stockstotrade.com/wp-content/uploads/2026/09/intc-slides-after-big-rally-as-apple-cuts-more-mac-ties.jpg",
+      "source": "StocksToTrade",
+      "category_within_source": "General",
+      "source_domain": "StocksToTrade",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.908327"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.827460"
+        },
+        {
+          "topic": "earnings",
+          "relevance_score": "0.749726"
+        }
+      ],
+      "overall_sentiment_score": -0.235969,
+      "overall_sentiment_label": "Somewhat-Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "INTC",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "-0.220409",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.725479",
+          "ticker_sentiment_score": "-0.299326",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        }
+      ]
+    },
+    {
+      "title": "Apple and Amazon face revived UK consumer lawsuit over product sales",
+      "url": "https://www.reuters.com/legal/litigation/apple-amazon-face-revived-uk-consumer-lawsuit-over-product-sales-2026-09-28/",
+      "time_published": "20260928T113156",
+      "authors": [
+        "Reuters"
+      ],
+      "summary": "A UK consumer lawsuit against Apple and Amazon has been partially allowed to proceed by Britain's Competition Appeal Tribunal. The lawsuit alleges that a 2018 agreement between the companies restricted competition in the sale of Apple products on Amazon's UK marketplace, leading to inflated prices for consumers. While claims related to products purchased directly from Apple or other retailers were rejected, the tribunal found claims concerning Apple products bought through Amazon's marketplace to be \"plausible, credible and grounded in the facts,\" potentially valuing the case between Â£289 million and Â£306 million.",
+      "banner_image": "https://www.reuters.com/resizer/v2/VS2M7POA7VI2NCNHATFBKOM6JA.jpg?auth=afb088729e97656aeee28677366ecc6842c1484da975fb050c6b865c9aacbba4&width=1080&quality=80",
+      "source": "Reuters",
+      "category_within_source": "General",
+      "source_domain": "Reuters",
+      "topics": [
+        {
+          "topic": "retail_wholesale",
+          "relevance_score": "0.834118"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.745727"
+        }
+      ],
+      "overall_sentiment_score": -0.213889,
+      "overall_sentiment_label": "Somewhat-Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "-0.207363",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "AMZN",
+          "relevance_score": "0.987952",
+          "ticker_sentiment_score": "-0.242400",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        }
+      ]
+    },
+    {
+      "title": "The economist who coined the phrase 'Magnificent 7' says the very thing that made them extraordinary is under threat",
+      "url": "https://fortune.com/2026/09/28/mag-7-under-threat-ai-investment-bond-yields/",
+      "time_published": "20260928T110232",
+      "authors": [
+        "Eleanor Pringle"
+      ],
+      "summary": "Michael Hartnett, who coined the \"Magnificent 7\" phrase, warns that the very characteristic that made these tech giants extraordinaryâ€”their ability to generate significant cash without spending itâ€”is now threatened. Due to massive AI investments, these companies are becoming increasingly reliant on the bond market, tying their prospects to an asset class they once hedged against. Hartnett suggests that policymakers might intervene to stabilize the bond market, as higher yields could hinder AI investment and impact the wealth effect from the equity market.",
+      "banner_image": "https://fortune.com/img-assets/wp-content/uploads/2026/09/GettyImages-2266799621-e1790592198918.jpg?format=webp&w=1440&quality=75",
+      "source": "Fortune",
+      "category_within_source": "General",
+      "source_domain": "Fortune",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.909261"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.835908"
+        },
+        {
+          "topic": "economy_monetary",
+          "relevance_score": "0.735594"
+        },
+        {
+          "topic": "economy_macro",
+          "relevance_score": "0.617393"
+        }
+      ],
+      "overall_sentiment_score": 0.125137,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "BAC",
+          "relevance_score": "0.716332",
+          "ticker_sentiment_score": "0.141327",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.945929",
+          "ticker_sentiment_score": "0.101190",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "AMZN",
+          "relevance_score": "0.906913",
+          "ticker_sentiment_score": "0.136479",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.932268",
+          "ticker_sentiment_score": "0.105895",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.922656",
+          "ticker_sentiment_score": "0.148047",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Nvidia's $5.4 Trillion Market Cap 'Seems Crazy' Next to $3.5 Trillion Russell 2000 Total, Says Charlie Bilello",
+      "url": "https://www.benzinga.com/markets/equities/26/09/62016564/nvidias-5-4-trillion-market-cap-seems-crazy-next-to-3-5-trillion-russell-2000-total-says-charlie-bilello",
+      "time_published": "20260928T101431",
+      "authors": [
+        "Rishabh Mishra"
+      ],
+      "summary": "Nvidia's market capitalization reached $5.4 trillion, exceeding the entire Russell 2000 index's combined value of $3.5 trillion, highlighting a significant valuation gap. Charlie Bilello of Creative Planning attributes this disparity to Nvidia's $193 billion profit over the last year, compared to the Russell 2000 members' collective $13 billion loss. Nvidia now stands as the world's largest company by market cap, demonstrating its dominant financial performance.",
+      "banner_image": "https://cdn.benzinga.com/cdn-cgi/image/width=3840,format=auto,quality=85/files/images/story/2026/09/28/Kyiv--Ukraine---January-29--2025-Nvidia-.jpg",
+      "source": "Benzinga",
+      "category_within_source": "General",
+      "source_domain": "Benzinga",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "1.000000"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.909975"
+        },
+        {
+          "topic": "earnings",
+          "relevance_score": "0.831461"
+        },
+        {
+          "topic": "economy_macro",
+          "relevance_score": "0.613283"
+        }
+      ],
+      "overall_sentiment_score": 0.349099,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "NVDA",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.426702",
+          "ticker_sentiment_label": "Bullish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.720886",
+          "ticker_sentiment_score": "0.330983",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "GOOG",
+          "relevance_score": "0.739815",
+          "ticker_sentiment_score": "0.327213",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.748341",
+          "ticker_sentiment_score": "0.305156",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "MSFT",
+          "relevance_score": "0.711787",
+          "ticker_sentiment_score": "0.332903",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        }
+      ]
+    },
+    {
+      "title": "Copilot Reboot Sends Microsoft Soaring, but Trump's No to Iran Hangs Over Monday",
+      "url": "https://www.chartmill.com/news/NKE/Chartmill-55413-Copilot-Reboot-Sends-Microsoft-Soaring-but-Trumps-No-to-Iran-Hangs-Over-Monday",
+      "time_published": "20260928T091734",
+      "authors": [
+        "Kristoff De Turck"
+      ],
+      "summary": "Microsoft's stock surged after a major overhaul of its AI assistant, Copilot, adding $150 billion to its market value and driving the Dow and Nasdaq higher. However, President Trump's rejection of Iran's ceasefire proposal and the potential for renewed US strikes after the midterms introduced geopolitical uncertainty, threatening to reverse a cooling oil market. Meanwhile, consumer sentiment declined due to rising inflation expectations, and Apple faced a substantial patent infringement verdict.",
+      "banner_image": "https://www.chartmill.com/images/uploads/United_States_Michigan_Consumer_Sentiment_96b8c24e9d_large.webp",
+      "source": "ChartMill",
+      "category_within_source": "General",
+      "source_domain": "ChartMill",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.903432"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.819539"
+        },
+        {
+          "topic": "economy_monetary",
+          "relevance_score": "0.734784"
+        },
+        {
+          "topic": "retail_wholesale",
+          "relevance_score": "0.631311"
+        },
+        {
+          "topic": "economy_macro",
+          "relevance_score": "0.629332"
+        }
+      ],
+      "overall_sentiment_score": 0.251642,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "MSFT",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.454207",
+          "ticker_sentiment_label": "Bullish"
+        },
+        {
+          "ticker": "COST",
+          "relevance_score": "0.714147",
+          "ticker_sentiment_score": "0.443116",
+          "ticker_sentiment_label": "Bullish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.706111",
+          "ticker_sentiment_score": "-0.234042",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "AKAM",
+          "relevance_score": "0.603703",
+          "ticker_sentiment_score": "0.301556",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        }
+      ]
+    },
+    {
+      "title": "Apple Stock at $341 After a $5.7 Billion Taction Verdict: Bull $405, Bear $245",
+      "url": "https://financefeeds.com/apple-aapl-stock-341-taction-5-7-billion-verdict-bull-405-bear-245/",
+      "time_published": "20260928T084756",
+      "authors": [
+        "Tobi Opeyemi Amure"
+      ],
+      "summary": "Apple's stock is trading at $341 after a San Diego jury awarded Taction Technology $5.7 billion for patent infringement related to iPhone and Apple Watch haptics. Despite the large sum, the verdict is considered manageable for Apple, representing about 4% of its cash reserves and 17 days of profit, with the company planning to appeal. Analysts have varied 12-month price targets for Apple, ranging from $215 to $405, and the stock is currently trading above the average target.",
+      "banner_image": "https://cdn-iledkkd.nitrocdn.com/JgVqWxjBXAxXZqxnJHbtcSOOAHYjFqOB/assets/images/optimized/rev-e39c3a3/financefeeds.com/wp-content/uploads/2026/05/Apple-Prepares-AI-Model-Choice-Capability-for-iPhone-and-Mac-Users-727x.jpg",
+      "source": "FinanceFeeds",
+      "category_within_source": "General",
+      "source_domain": "FinanceFeeds",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.939559"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.824754"
+        }
+      ],
+      "overall_sentiment_score": -0.121447,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "-0.095698",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "AVGO",
+          "relevance_score": "0.581672",
+          "ticker_sentiment_score": "-0.139121",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Arini Capital Management Ltd Buys 80,600 Shares of Apple Inc. $AAPL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-arini-capital-management-ltd-buys-80600-shares-of-apple-inc-aapl-2026-09-28/",
+      "time_published": "20260928T071753",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Arini Capital Management Ltd has acquired a new stake of 80,600 shares in Apple Inc. (NASDAQ:AAPL) during the second quarter, valued at approximately $23.32 million, making Apple its seventh largest holding. Other institutional investors like Legal & General Group Plc and Deutsche Bank AG also significantly increased their positions. The article also touches on mixed sentiment regarding Apple's future, highlighting strong iPhone 18 demand and ecosystem expansion, but also concerns about rising component costs, valuation, and ongoing legal/product issues.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.905134"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.842397"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.712993"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.640136"
+        }
+      ],
+      "overall_sentiment_score": 0.232504,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.215405",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        }
+      ]
+    },
+    {
+      "title": "Apple Inc. $AAPL Shares Newly Acquired by Caisse de depot et placement du Quebec",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-apple-inc-aapl-shares-newly-acquired-by-caisse-de-depot-et-placement-du-quebec-2026-09-28/",
+      "time_published": "20260928T071731",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Caisse de dÃ©pÃ´t et placement du QuÃ©bec (CDPQ) has acquired 9.33 million shares of Apple Inc. (NASDAQ:AAPL) worth approximately $2.7 billion, making it their largest portfolio holding. Apple reported strong quarterly results, exceeding analyst expectations with $109.42 billion in revenue and $2.02 EPS. Despite a \"Moderate Buy\" consensus from analysts and a $340.14 price target, risks include elevated valuation, rising component costs, AI competition, and ongoing legal issues.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.942082"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.817568"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.720520"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.803178"
+        }
+      ],
+      "overall_sentiment_score": 0.147031,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.103503",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "15,642 Shares in Apple Inc. $AAPL Bought by Birmingham Capital Management Co. Inc. AL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-15642-shares-in-apple-inc-aapl-bought-by-birmingham-capital-management-co-inc-al-2026-09-28/",
+      "time_published": "20260928T071731",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Birmingham Capital Management Co. Inc. AL has purchased 15,642 shares of Apple Inc. (NASDAQ:AAPL) stock, valued at approximately $4.53 million, making it their 18th largest holding. Institutional investors collectively own 67.73% of Apple, with several large firms significantly increasing their positions. Despite a positive outlook and recent outperformance in earnings, Apple faces risks related to its high valuation, AI execution, and ongoing legal challenges.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.924694"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.906817"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.817748"
+        }
+      ],
+      "overall_sentiment_score": -0.110076,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.000101",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.631485",
+          "ticker_sentiment_score": "-0.198936",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        }
+      ]
+    },
+    {
+      "title": "Philadelphia Investment Partners LLC Purchases New Shares in Apple Inc. $AAPL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-philadelphia-investment-partners-llc-purchases-new-shares-in-apple-inc-aapl-2026-09-28/",
+      "time_published": "20260928T071731",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Philadelphia Investment Partners LLC has acquired 12,025 shares of Apple Inc. (NASDAQ:AAPL) stock, valued at approximately $3.5 million, making it their 11th largest holding. Institutional investors collectively own 67.73% of Apple's stock, with several other major firms also adjusting their positions. Apple recently reported strong quarterly earnings and maintains a \"Moderate Buy\" consensus rating from analysts, despite facing risks from valuation, component costs, AI competition, and legal issues.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.904623"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.804656"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.726908"
+        }
+      ],
+      "overall_sentiment_score": -0.040221,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.109677",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "BAC",
+          "relevance_score": "0.624456",
+          "ticker_sentiment_score": "0.137792",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.624276",
+          "ticker_sentiment_score": "-0.344313",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        }
+      ]
+    },
+    {
+      "title": "Pingora Partners LLC Buys New Shares in Apple Inc. $AAPL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-pingora-partners-llc-buys-new-shares-in-apple-inc-aapl-2026-09-28/",
+      "time_published": "20260928T071731",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Pingora Partners LLC acquired 8,794 shares of Apple Inc. (AAPL) in the second quarter, valued at approximately $2.545 million, making Apple 1.5% of its holdings. This comes as institutional investors own 67.73% of the stock and analysts maintain a \"Moderate Buy\" rating with a $340.14 average price target. Despite Apple trading near its 52-week high and exceeding earnings expectations, the article highlights risks such as elevated valuation, rising component costs, competitive AI pressure, and ongoing legal issues.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.915805"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.843976"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.835702"
+        }
+      ],
+      "overall_sentiment_score": -0.115718,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.269070",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.560926",
+          "ticker_sentiment_score": "-0.272554",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.565230",
+          "ticker_sentiment_score": "-0.242212",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        }
+      ]
+    },
+    {
+      "title": "Bcwm LLC Buys 29,257 Shares of Apple Inc. $AAPL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-bcwm-llc-buys-29257-shares-of-apple-inc-aapl-2026-09-28/",
+      "time_published": "20260928T071731",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Bcwm LLC acquired 29,257 shares of Apple Inc. (NASDAQ:AAPL) in the second quarter, making it their 19th largest holding and representing approximately 2.5% of their portfolio. Institutional investors collectively own 67.73% of Apple's stock, with several major firms increasing their positions. Analysts maintain a \"Moderate Buy\" rating for Apple, with a consensus price target of $340.14, following the company's recent beat on quarterly earnings and revenue expectations.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.931401"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.843432"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.802709"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.627329"
+        }
+      ],
+      "overall_sentiment_score": -0.058953,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.993142",
+          "ticker_sentiment_score": "0.273616",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.561175",
+          "ticker_sentiment_score": "-0.115275",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "MSFT",
+          "relevance_score": "0.559627",
+          "ticker_sentiment_score": "-0.140018",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.570498",
+          "ticker_sentiment_score": "-0.138163",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "2,800 Shares of Apple Inc. $AAPL Acquired by American Capital Management Inc.",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-2800-shares-of-apple-inc-aapl-acquired-by-american-capital-management-inc-2026-09-28/",
+      "time_published": "20260928T071731",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "American Capital Management Inc. has acquired 2,800 shares of Apple Inc. (NASDAQ:AAPL) in the second quarter, valued at approximately $810,000. Institutional investors now collectively own 67.73% of Apple's stock, while analysts generally maintain a \"Moderate Buy\" rating with an average price target of $340.14. Despite some insider selling, Apple reported strong earnings, exceeding revenue and EPS estimates, with shares opening near their 12-month high.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.942421"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.819065"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.721827"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.634230"
+        }
+      ],
+      "overall_sentiment_score": 0.262713,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.967145",
+          "ticker_sentiment_score": "0.290774",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        }
+      ]
+    },
+    {
+      "title": "Berkshire Hathaway Inc Acquires 227,917,808 Shares of Apple Inc. $AAPL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-berkshire-hathaway-inc-acquires-227917808-shares-of-apple-inc-aapl-2026-09-28/",
+      "time_published": "20260928T071418",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Berkshire Hathaway Inc. has acquired a significant new position in Apple Inc., purchasing over 227 million shares valued at approximately $66 billion, making Apple its largest holding. Despite this strong institutional backing and better-than-expected earnings, Apple faces risks from its elevated valuation, rising component costs, AI competition, and ongoing legal issues. The company also declared a quarterly dividend of $0.27 per share.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.929673"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.848921"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.744811"
+        }
+      ],
+      "overall_sentiment_score": -0.055724,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.240129",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.601105",
+          "ticker_sentiment_score": "-0.198406",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.571488",
+          "ticker_sentiment_score": "-0.136321",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Port Capital LLC Makes New $13.91 Million Investment in Apple Inc. $AAPL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-port-capital-llc-makes-new-1391-million-investment-in-apple-inc-aapl-2026-09-28/",
+      "time_published": "20260928T064910",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Port Capital LLC has made a new $13.91 million investment in Apple Inc. (NASDAQ:AAPL) by acquiring 48,058 shares. This comes as institutional investors now own 67.73% of Apple's outstanding stock, and the company reported strong quarterly earnings that surpassed analyst expectations. Despite positive sentiment around iPhone 18 demand and analyst upgrades, risks include high valuation, rising component costs, and ongoing legal and software issues.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.905450"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.848002"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.947032"
+        }
+      ],
+      "overall_sentiment_score": -0.03106,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.984324",
+          "ticker_sentiment_score": "0.093017",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.625138",
+          "ticker_sentiment_score": "0.043652",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.566836",
+          "ticker_sentiment_score": "-0.113256",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Apple Inc. $AAPL Shares Newly Purchased by Perennial Investment Advisors LLC",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-apple-inc-aapl-shares-newly-purchased-by-perennial-investment-advisors-llc-2026-09-28/",
+      "time_published": "20260928T064910",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Perennial Investment Advisors LLC has newly purchased 169,271 shares of Apple Inc. (AAPL) valued at approximately $49 million, making it their eighth-largest holding. Institutional investors collectively own 67.73% of Apple, which faces both positive momentum from strong iPhone demand and challenges like high valuation, rising component costs, and ongoing legal issues. Analysts largely maintain a \"Moderate Buy\" rating with a consensus price target of $340.14, despite some concerns about AI competition and product issues.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.927118"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.825474"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.719945"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.642246"
+        }
+      ],
+      "overall_sentiment_score": -0.126824,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.102469",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.570796",
+          "ticker_sentiment_score": "-0.262095",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.594871",
+          "ticker_sentiment_score": "-0.203129",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        }
+      ]
+    },
+    {
+      "title": "Permanens Capital L.P. Purchases New Position in Apple Inc. $AAPL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-permanens-capital-lp-purchases-new-position-in-apple-inc-aapl-2026-09-28/",
+      "time_published": "20260928T064910",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Permanens Capital L.P. has acquired a new stake in Apple Inc. (NASDAQ:AAPL), purchasing 10,603 shares valued at approximately $3.1 million during the second quarter. This move is part of a broader trend of institutional investment in Apple, with such investors collectively owning 67.73% of the company's outstanding stock. Despite some analyst downgrades to \"Hold,\" the overall sentiment remains positive with a \"Moderate Buy\" consensus rating and an average price target of $340.14.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.914248"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.809992"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.722569"
+        }
+      ],
+      "overall_sentiment_score": 0.23508,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.206823",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        }
+      ]
+    },
+    {
+      "title": "US jury says Apple owes record $5.7 billion in haptic technology patent case",
+      "url": "https://www.redlakenationnews.com/story/2026/09/28/business/us-jury-says-apple-owes-record-57-billion-in-haptic-technology-patent-case/143117.html",
+      "time_published": "20260928T032410",
+      "authors": [],
+      "summary": "A US jury has ruled that Apple must pay over $5.7 billion to San Diego-based Taction for infringing on its haptic technology patents used in iPhones and Apple Watches. Apple disputes the verdict, stating its Taptic Engine is fundamentally different from Taction's technology, and plans to appeal what is reportedly the largest patent infringement verdict to date in the country.",
+      "banner_image": "https://www.reuters.com/legal/litigation/us-jury-says-apple-owes-record-57-billion-haptic-technology-patent-case-2026-09-26/",
+      "source": "Red Lake Nation News",
+      "category_within_source": "General",
+      "source_domain": "Red Lake Nation News",
+      "topics": [
+        {
+          "topic": "technology",
+          "relevance_score": "0.914949"
+        }
+      ],
+      "overall_sentiment_score": -0.667014,
+      "overall_sentiment_label": "Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "-0.650523",
+          "ticker_sentiment_label": "Bearish"
+        }
+      ]
+    },
+    {
+      "title": "Jim Cramer: Apple, Microsoft, and Meta prove stock picking for individuals is not a fool's errand",
+      "url": "https://www.cnbc.com/2026/09/27/jim-cramer-apple-microsoft-and-meta-prove-stock-picking-for-individuals-is-not-a-fools-errand.html",
+      "time_published": "20260927T232121",
+      "authors": [
+        "Jim Cramer"
+      ],
+      "summary": "Jim Cramer argues against the notion that individual stock picking is a \"fool's game,\" citing the success of Apple, Microsoft, and Meta Platforms. He uses Warren Buffett's significant investment in Apple as a prime example of successful concentration, and details his personal history and insights into Microsoft and Meta, emphasizing their growth potential and competitive leadership. Cramer advocates for individual investors to confidently choose stocks, criticizing articles that demean retail investors.",
+      "banner_image": "https://image.cnbcfm.com/api/v1/image/108012899-1722257724296-Cramer_Jim_EXTENDED.jpg?v=1722257932&w=60&h=60&ffmt=webp",
+      "source": "CNBC",
+      "category_within_source": "General",
+      "source_domain": "CNBC",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.943983"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.820990"
+        }
+      ],
+      "overall_sentiment_score": 0.347061,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "MSFT",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.433096",
+          "ticker_sentiment_label": "Bullish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.936967",
+          "ticker_sentiment_score": "0.517107",
+          "ticker_sentiment_label": "Bullish"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.832149",
+          "ticker_sentiment_score": "0.407425",
+          "ticker_sentiment_label": "Bullish"
+        },
+        {
+          "ticker": "AXP",
+          "relevance_score": "0.630699",
+          "ticker_sentiment_score": "0.135606",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "KO",
+          "relevance_score": "0.618157",
+          "ticker_sentiment_score": "0.142178",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Muskâ€™s X Corp and SpaceXAI Drop Apple From AI Antitrust Fight. Is One Legal Headache Gone for the iPhone Maker?",
+      "url": "https://www.insidermonkey.com/news/musks-x-corp-and-spacexai-drop-apple-from-ai-antitrust-fight-is-one-legal-headache-gone-for-the-iphone-maker-1841382/",
+      "time_published": "20260927T223155",
+      "authors": [
+        "Noor Ul Ain Rehman"
+      ],
+      "summary": "Elon Musk's companies, X Corp and SpaceXAI, have dismissed their antitrust claims against Apple, removing the iPhone maker from a lawsuit that challenged its integration of OpenAI's ChatGPT. While Apple's involvement in the case has ended, Musk's companies will continue their legal fight against OpenAI, leaving the reasons for Apple's dismissal and any potential settlement undisclosed. This development removes a significant legal challenge for Apple as it further develops its AI strategy with new Siri AI features and collaborations beyond OpenAI.",
+      "banner_image": "https://d2w7kw43nye0pi.cloudfront.net/veE6f11O_EqL6OeUpUb4hZ6gm0ae9kYuZ3Af4Z2FzcY/resize:fill:480:270:0/plain/https://imonkeyblog.s3.us-east-1.amazonaws.com/blog/wp-content/uploads/2023/09/19155253/AAPL-insidermonkey-1695153171712.jpg",
+      "source": "Insider Monkey",
+      "category_within_source": "General",
+      "source_domain": "Insider Monkey",
+      "topics": [
+        {
+          "topic": "technology",
+          "relevance_score": "0.902594"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.627355"
+        }
+      ],
+      "overall_sentiment_score": 0.226141,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.996117",
+          "ticker_sentiment_score": "0.329604",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "GOOG",
+          "relevance_score": "0.659033",
+          "ticker_sentiment_score": "0.146232",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Can Muse overcome Metaâ€™s trust issues?",
+      "url": "https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/",
+      "time_published": "20260927T195800",
+      "authors": [
+        "Anthony Ha"
+      ],
+      "summary": "Meta's new AI agent, Muse, was a major focus at the company's Connect event, highlighting a consumer-centric approach distinct from other AI firms targeting enterprise. While one editor found a \"party-trick\" use case (unclaimed money), the discussion raised significant concerns about user trust given Meta's ad-driven business model and past privacy issues. The article explores whether Meta can build enough trust for users to integrate Muse deeply into their financial and personal lives, especially when compared to companies like Apple.",
+      "banner_image": "https://techcrunch.com/wp-content/uploads/2026/09/GettyImages-2296215726.jpg?w=1024",
+      "source": "TechCrunch",
+      "category_within_source": "General",
+      "source_domain": "TechCrunch",
+      "topics": [
+        {
+          "topic": "technology",
+          "relevance_score": "0.924059"
+        }
+      ],
+      "overall_sentiment_score": 0.084007,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "MUSE",
+          "relevance_score": "0.302578",
+          "ticker_sentiment_score": "0.026740",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.016551",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.719835",
+          "ticker_sentiment_score": "0.144312",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.609448",
+          "ticker_sentiment_score": "0.135103",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Apple and Nvidia Are the Two Largest Companies in the World. Which is the Better Stock to Buy?",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/apple-nvidia-two-largest-companies-200500400.html",
+      "time_published": "20260927T160500",
+      "authors": [
+        "Keithen Drury",
+        "The Motley Fool"
+      ],
+      "summary": "This article compares Apple and Nvidia, the two largest companies by market capitalization, to determine which is the better investment. Despite Apple's consistent growth in consumer hardware and services, Nvidia's rapid expansion driven by AI and semiconductor demand positions it for greater future revenue and stock performance. The analysis concludes that Nvidia is the better buy due to its superior growth prospects and more attractive valuation compared to Apple.",
+      "banner_image": "https://s.yimg.com/lo/mysterio/api/ecf053599bde0389a9fdbd6366aeb28634f34079b3cbef04cc2f7a3f97418f1e/lightyear_networkapi/resizefill_h48%3Bquality_100%3Bformat_webp/https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2020-10%2F515f50a0-0f30-11eb-9ebf-0273aacc9ef0",
+      "source": "Yahoo Finance",
+      "category_within_source": "General",
+      "source_domain": "Yahoo Finance",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.931891"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.806247"
+        },
+        {
+          "topic": "earnings",
+          "relevance_score": "0.701710"
+        }
+      ],
+      "overall_sentiment_score": 0.182846,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "NVDA",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.487720",
+          "ticker_sentiment_label": "Bullish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.992781",
+          "ticker_sentiment_score": "0.080440",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "MA",
+          "relevance_score": "0.637270",
+          "ticker_sentiment_score": "0.017224",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Muskâ€™s X Corp and SpaceXAI Drop Apple From AI Antitrust Fight. Is One Legal Headache Gone for the iPhone Maker?",
+      "url": "https://finance.yahoo.com/technology/ai/articles/musk-x-corp-spacexai-drop-223128041.html",
+      "time_published": "20260927T153100",
+      "authors": [
+        "Noor Ul Ain Rehman"
+      ],
+      "summary": "Elon Musk's X Corp and SpaceXAI have dismissed their antitrust claims against Apple in a lawsuit concerning AI competition, removing Apple from the legal battle. While Musk's companies will continue their case against OpenAI, the reason for dropping Apple is undisclosed, leaving investors to speculate whether a settlement was reached or if Apple's broader AI strategy played a role. This outcome resolves one legal challenge for Apple as it further develops its generative AI capabilities, but the lack of transparency means the implications for its AI strategy remain unclear.",
+      "banner_image": "https://s.yimg.com/lo/mysterio/api/fde014164016c5a574b833ee436c0b4e0c886e1dc807f6fb1a9fe3779d9a2248/lightyear_networkapi/resizefill_h48%3Bquality_100%3Bformat_webp/https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2020-12%2Fd7df1000-34e4-11eb-b6ae-ac87660fe5ee",
+      "source": "Yahoo Finance",
+      "category_within_source": "General",
+      "source_domain": "Yahoo Finance",
+      "topics": [
+        {
+          "topic": "technology",
+          "relevance_score": "0.949298"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.839102"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.616725"
+        },
+        {
+          "topic": "mergers_and_acquisitions",
+          "relevance_score": "0.642507"
+        }
+      ],
+      "overall_sentiment_score": 0.16176,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.245278",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "GOOG",
+          "relevance_score": "0.574736",
+          "ticker_sentiment_score": "0.142954",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Qualcomm Takes on Apple's New Chip, Fitness Tracker, Updated Macs and More: This Week in Appleverse",
+      "url": "https://www.benzinga.com/markets/tech/26/09/62011935/qualcomm-takes-on-apples-new-chip-fitness-tracker-updated-macs-and-more-this-week-in-appleverse",
+      "time_published": "20260927T105908",
+      "authors": [
+        "Rounak Jain"
+      ],
+      "summary": "This article summarizes major tech news, including Qualcomm's renewed patent license with Apple and its new AI-focused Snapdragon chips, designed to compete with Apple's A20 Pro. It also highlights Apple's reported developments in a screen-free fitness tracker and an AI-heavy pendant, alongside its marketing of new Macs for cost-effective AI model execution. Additionally, an entrepreneur suggests Apple should consider acquiring companies like Disney or Uber.",
+      "banner_image": "https://cdn.benzinga.com/cdn-cgi/image/width=3840,format=auto,quality=85/files/images/story/2026/09/27/Cupertino--California--September-25--202.jpg",
+      "source": "Benzinga",
+      "category_within_source": "General",
+      "source_domain": "Benzinga",
+      "topics": [
+        {
+          "topic": "technology",
+          "relevance_score": "1.000000"
+        },
+        {
+          "topic": "mergers_and_acquisitions",
+          "relevance_score": "0.640759"
+        }
+      ],
+      "overall_sentiment_score": 0.198342,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.349757",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "QCOM",
+          "relevance_score": "0.905722",
+          "ticker_sentiment_score": "0.280105",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "DIS",
+          "relevance_score": "0.622186",
+          "ticker_sentiment_score": "0.141933",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "UBER",
+          "relevance_score": "0.639057",
+          "ticker_sentiment_score": "0.103767",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "COIN",
+          "relevance_score": "0.565109",
+          "ticker_sentiment_score": "0.116473",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Apple Hit With $5.7 Billion Patent Verdict Over iPhone, Apple Watch Haptics",
+      "url": "https://www.benzinga.com/markets/tech/26/09/62011847/apple-hit-with-5-7-billion-patent-verdict-over-iphone-apple-watch-haptics",
+      "time_published": "20260927T094615",
+      "authors": [
+        "Rounak Jain"
+      ],
+      "summary": "A federal jury in San Diego has ordered Apple Inc. to pay over $5.7 billion in patent damages to haptics firm Taction Technology. The verdict, one of the largest patent awards against a technology company, found Apple infringed on two Taction patents related to the haptic feedback in its iPhones and Apple Watches. Apple plans to challenge the ruling, stating strong disagreement with the verdict and the damages awarded.",
+      "banner_image": "https://cdn.benzinga.com/cdn-cgi/image/width=3840,format=auto,quality=85/files/images/story/2026/09/27/Beijing--China---July-21--2023-Apple-Log.jpg",
+      "source": "Benzinga",
+      "category_within_source": "General",
+      "source_domain": "Benzinga",
+      "topics": [
+        {
+          "topic": "technology",
+          "relevance_score": "1.000000"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.822396"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.708939"
+        }
+      ],
+      "overall_sentiment_score": -0.3849,
+      "overall_sentiment_label": "Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.957877",
+          "ticker_sentiment_score": "-0.383536",
+          "ticker_sentiment_label": "Bearish"
+        }
+      ]
+    },
+    {
+      "title": "Apple Inc. $AAPL Stock Holdings Increased by Wedbush Fund Advisers LLC",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-apple-inc-aapl-stock-holdings-increased-by-wedbush-fund-advisers-llc-2026-09-27/",
+      "time_published": "20260927T081519",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Wedbush Fund Advisers LLC significantly increased its stake in Apple Inc. (NASDAQ:AAPL) during the second quarter, now holding 183,300 shares valued at $53.04 million. Other institutional investors have also adjusted their positions, and analysts generally maintain a \"Moderate Buy\" rating for Apple with an average price target of $340.14. Despite strong revenue growth and positive demand for its products, the company faces risks from its high valuation, rising component costs, AI competition, and ongoing legal issues.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.929185"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.816125"
+        },
+        {
+          "topic": "earnings",
+          "relevance_score": "0.736436"
+        }
+      ],
+      "overall_sentiment_score": -0.058888,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.096735",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.634268",
+          "ticker_sentiment_score": "-0.109020",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Apple Inc. $AAPL Shares Newly Bought by University of Wisconsin Foundation",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-apple-inc-aapl-shares-newly-bought-by-university-of-wisconsin-foundation-2026-09-27/",
+      "time_published": "20260927T075351",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "The University of Wisconsin Foundation recently acquired a new stake in Apple Inc. ($AAPL), purchasing 31,153 shares valued at approximately $9 million, making it 7.1% of their portfolio. This comes as institutional investors collectively own 67.73% of Apple, and the company reported strong quarterly earnings of $2.02 per share and $109.42 billion in revenue. Despite a generally positive analyst outlook and a \"Moderate Buy\" consensus, risks such as valuation concerns, rising component costs, AI competition, legal challenges, and product issues remain.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.943265"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.837275"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "1.000000"
+        }
+      ],
+      "overall_sentiment_score": 0.203599,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.243478",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        }
+      ]
+    },
+    {
+      "title": "Trajan Wealth LLC Purchases New Shares in Apple Inc. $AAPL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-trajan-wealth-llc-purchases-new-shares-in-apple-inc-aapl-2026-09-27/",
+      "time_published": "20260927T074702",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Trajan Wealth LLC has acquired 234,496 new shares of Apple Inc. (AAPL) in the second quarter, a stake valued at approximately $67.9 million, making Apple its ninth-largest holding. Institutional investors now own 67.73% of Apple's stock, and analysts largely maintain a \"Moderate Buy\" rating with an average price target of $340.14. Despite strong earnings and revenue growth, the company faces risks from elevated valuation, rising component costs, AI competition, and ongoing legal challenges.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.940998"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.937167"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.845503"
+        }
+      ],
+      "overall_sentiment_score": 0.073007,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.084845",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Valtrion Capital Management LLC Buys 9,386 Shares of Apple Inc. $AAPL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-valtrion-capital-management-llc-buys-9386-shares-of-apple-inc-aapl-2026-09-27/",
+      "time_published": "20260927T074557",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Valtrion Capital Management LLC has purchased 9,386 shares of Apple Inc. (NASDAQ:AAPL) during the second quarter, making Apple its seventh-largest holding and approximately 2% of its portfolio. This acquisition, valued at $2.7 million, contributes to Apple's substantial institutional ownership of 67.73%. Despite a \"Moderate Buy\" consensus rating and an average price target of $340.14 from analysts, the company faces risks including elevated valuation, rising component costs, AI competition, and ongoing legal issues.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.903761"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.928003"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.845947"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.817869"
+        }
+      ],
+      "overall_sentiment_score": 0.347438,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.300396",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        }
+      ]
+    },
+    {
+      "title": "21,970 Shares in Apple Inc. $AAPL Bought by First Bancorp Inc ME",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-21970-shares-in-apple-inc-aapl-bought-by-first-bancorp-inc-me-2026-09-27/",
+      "time_published": "20260927T071551",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "First Bancorp Inc. ME recently acquired 21,970 shares of Apple Inc. (NASDAQ:AAPL) in the second quarter, valued at approximately $6.36 million, making Apple its seventh-largest holding and comprising 2.5% of its portfolio. While institutional ownership remains high at 67.73% and analysts mostly recommend a \"Moderate Buy\" with a target price of $340.14, risks include valuation concerns, rising component costs, AI competition, and ongoing legal issues. Apple's latest quarterly earnings exceeded expectations, with a 16.4% year-over-year revenue increase.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.936182"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.920366"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.828134"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.743886"
+        }
+      ],
+      "overall_sentiment_score": 0.148639,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.966137",
+          "ticker_sentiment_score": "0.117790",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Canada Pension Plan Investment Board Acquires 26,489,978 Shares of Apple Inc. $AAPL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-canada-pension-plan-investment-board-acquires-26489978-shares-of-apple-inc-aapl-2026-09-27/",
+      "time_published": "20260927T071551",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "The Canada Pension Plan Investment Board (CPPIB) recently acquired over 26 million shares of Apple Inc. ($AAPL), valued at approximately $7.67 billion, making it their second-largest holding. Despite strong iPhone demand and positive quarterly results, Apple faces risks including high valuation, rising component costs, intense consumer AI competition, and ongoing legal issues. Analysts maintain a \"Moderate Buy\" rating for Apple, with an average price target of $340.14.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "1.000000"
+        },
+        {
+          "topic": "earnings",
+          "relevance_score": "0.922462"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.831934"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.742971"
+        },
+        {
+          "topic": "economy_macro",
+          "relevance_score": "0.640158"
+        }
+      ],
+      "overall_sentiment_score": 0.101705,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.114903",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "472,108 Shares in Apple Inc. $AAPL Acquired by Castleark Management LLC",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-472108-shares-in-apple-inc-aapl-acquired-by-castleark-management-llc-2026-09-27/",
+      "time_published": "20260927T071551",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Castleark Management LLC acquired 472,108 shares of Apple Inc. (NASDAQ:AAPL) in the second quarter, valuing the new position at approximately $136.6 million and making it their fifth-largest holding. Institutional ownership of Apple now stands at 67.73% of outstanding shares. Despite a \"Moderate Buy\" consensus rating and an average price target of $340.14, Apple faces risks from its high valuation, rising component costs, AI competition, and ongoing legal challenges.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.920921"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.810588"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.917745"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.705343"
+        }
+      ],
+      "overall_sentiment_score": 0.129141,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.960807",
+          "ticker_sentiment_score": "0.077540",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.608486",
+          "ticker_sentiment_score": "0.126511",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.561316",
+          "ticker_sentiment_score": "0.118356",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "65,334 Shares of Apple Inc. $AAPL Purchased by Councilmark Asset Management LLC",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-65334-shares-of-apple-inc-aapl-purchased-by-councilmark-asset-management-llc-2026-09-27/",
+      "time_published": "20260927T071551",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Councilmark Asset Management LLC recently acquired 65,334 shares of Apple Inc. (AAPL) worth approximately $18.9 million, making it their second-largest holding. Institutional investors collectively own 67.73% of Apple, which maintains a \"Moderate Buy\" consensus rating from analysts with an average price target of $340.14. Despite strong quarterly earnings, the company faces risks related to its high P/E ratio, rising component costs, AI competition, and ongoing legal issues.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.943887"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.815876"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.819478"
+        }
+      ],
+      "overall_sentiment_score": -0.190143,
+      "overall_sentiment_label": "Somewhat-Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.041993",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.617833",
+          "ticker_sentiment_score": "-0.332494",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        }
+      ]
+    },
+    {
+      "title": "Apple Inc. $AAPL Shares Newly Purchased by Cooper Haims Advisors LLC",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-apple-inc-aapl-shares-newly-purchased-by-cooper-haims-advisors-llc-2026-09-27/",
+      "time_published": "20260927T071551",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Cooper Haims Advisors LLC recently acquired 22,201 shares of Apple Inc. ($AAPL) valued at approximately $6.4 million, making it their eighth-largest holding. Several other institutional investors also increased their stakes in Apple during the second quarter, bringing institutional ownership to 67.73%. Despite a \"Moderate Buy\" consensus rating and positive iPhone demand, the company faces concerns related to valuation, rising component costs, AI competition, and legal risks.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.847050"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "1.000000"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.904415"
+        }
+      ],
+      "overall_sentiment_score": -0.186341,
+      "overall_sentiment_label": "Somewhat-Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.999808",
+          "ticker_sentiment_score": "0.072406",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.635496",
+          "ticker_sentiment_score": "-0.310531",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.574701",
+          "ticker_sentiment_score": "-0.285388",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        }
+      ]
+    },
+    {
+      "title": "AFT Forsyth & Company Inc. Buys 36,428 Shares of Apple Inc. $AAPL",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-aft-forsyth-company-inc-buys-36428-shares-of-apple-inc-aapl-2026-09-27/",
+      "time_published": "20260927T071114",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "AFT Forsyth & Company Inc. has acquired a new position in Apple Inc. (NASDAQ:AAPL), purchasing 36,428 shares valued at approximately $10.5 million. This investment makes Apple the third-largest holding in AFT Forsyth & Company Inc.'s portfolio, comprising 5.1% of its total assets. The article also details other institutional investments in Apple, recent analyst ratings, key news impacting Apple, its financial performance, dividend announcements, and insider transactions.",
+      "banner_image": "https://www.marketbeat.com/logos/apple-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.904652"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.816501"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.704643"
+        }
+      ],
+      "overall_sentiment_score": 0.053951,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.958841",
+          "ticker_sentiment_score": "0.073019",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.603681",
+          "ticker_sentiment_score": "0.039241",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.587218",
+          "ticker_sentiment_score": "0.003098",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Form 4 Southern California Bancorp For: 27 September By Investing.com",
+      "url": "https://ca.investing.com/news/stock-market-news/form-4-southern-california-bancorp-for-27-september-93CH-4854684",
+      "time_published": "20260927T021600",
+      "authors": [
+        "Investing.com"
+      ],
+      "summary": "This article reports on the filing of Form 4 for Southern California Bancorp on September 27. Form 4 is a document that must be filed with the U.S. Securities and Exchange Commission (SEC) whenever there is a change in the beneficial ownership of a company's securities by its directors, officers, or principal stockholders. The article provides a brief update on this specific financial filing.",
+      "banner_image": "https://content-media.investing.com/news/moved_LYNXMPEM3Q0V4_1200_L.jpg",
+      "source": "Investing.com Canada",
+      "category_within_source": "General",
+      "source_domain": "Investing.com Canada",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.905566"
+        }
+      ],
+      "overall_sentiment_score": 0.16932,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "BCAL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.057191",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "AVGO",
+          "relevance_score": "0.604784",
+          "ticker_sentiment_score": "0.205865",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.603596",
+          "ticker_sentiment_score": "0.208447",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        }
+      ]
+    },
+    {
+      "title": "Smart Ring CEO Told Investors Apple Backed Her and Walmart Was Buying. It Was a $2 Million Ponzi Scheme",
+      "url": "https://www.inc.com/kevin-haynes/smart-ring-ceo-told-investors-apple-backed-her-and-walmart-was-buying-it-was-a-2-million-ponzi-scheme/91411008",
+      "time_published": "20260927T001842",
+      "authors": [
+        "KEVIN HAYNES"
+      ],
+      "summary": "Michelle Bisnoff, former CEO of a wearable technology company, was convicted of running a nearly $2 million Ponzi scheme. She falsely claimed her smart rings had backing from Apple and Roc Nation, and retail agreements with Walmart and Target, while using most investor money for personal expenses. Bisnoff was also found guilty of wire fraud related to a $150,000 Covid-relief loan.",
+      "banner_image": "https://img-cdn.inc.com/image/upload/f_webp,c_fit,w_1920,q_auto/vip/2026/09/GAVEL_e4d88b.jpg",
+      "source": "Inc.com",
+      "category_within_source": "General",
+      "source_domain": "Inc.com",
+      "topics": [
+        {
+          "topic": "finance",
+          "relevance_score": "1.000000"
+        },
+        {
+          "topic": "retail_wholesale",
+          "relevance_score": "0.820889"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.723671"
+        }
+      ],
+      "overall_sentiment_score": 0.014109,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.306704",
+          "ticker_sentiment_score": "0.003332",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Webull Corporation (BULL) stock price, news, quote and history - Yahoo Finance",
+      "url": "https://sg.finance.yahoo.com/quote/BULL/latest-news/",
+      "time_published": "20260926T195442",
+      "authors": [],
+      "summary": "This Yahoo Finance page provides a comprehensive overview of Webull Corporation (BULL) stock, including its current price, news, historical data, and performance. It lists recent news articles discussing topics such as AI trading, analyst predictions of undervaluation and upside, and past revenue performance. The page also shows Webull's trailing total returns compared to the S&P 500 benchmark.",
+      "banner_image": null,
+      "source": "Yahoo Finance Singapore",
+      "category_within_source": "General",
+      "source_domain": "Yahoo Finance Singapore",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.942836"
+        },
+        {
+          "topic": "earnings",
+          "relevance_score": "0.833508"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.705028"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.632166"
+        }
+      ],
+      "overall_sentiment_score": 0.148082,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "BULL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.262306",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "RJF",
+          "relevance_score": "0.550009",
+          "ticker_sentiment_score": "0.103054",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.584833",
+          "ticker_sentiment_score": "0.048297",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "TikTok reaches first state settlement over teen safety claims",
+      "url": "https://news.lee.net/news/nation-world/tiktok-reaches-first-state-settlement-over-teen-safety-claims/article_729fcec5-4aa0-5c31-a035-b928cd3b9c60.html",
+      "time_published": "20260926T195018",
+      "authors": [
+        "Diana Novak Jones"
+      ],
+      "summary": "TikTok has reached its first state settlement with Alabama over claims that the platform endangered children and misled consumers about its safety. The agreement mandates new usage limits and enhanced age verification for Alabama users, including a two-hour daily time limit and pauses after 15 minutes of use. TikTok will pay Alabama at least $100 million, potentially rising to $300 million if other states join similar agreements.",
+      "banner_image": "https://bloximages.chicago2.vip.townnews.com/news.lee.net/content/tncms/assets/v3/editorial/f/32/f32aa160-e939-5d05-b5fc-be91dbdf4c43/6ab649253308f.image.jpg?resize=750%2C500",
+      "source": "Lee News Central",
+      "category_within_source": "General",
+      "source_domain": "Lee News Central",
+      "topics": [
+        {
+          "topic": "technology",
+          "relevance_score": "0.817988"
+        }
+      ],
+      "overall_sentiment_score": -0.216879,
+      "overall_sentiment_label": "Somewhat-Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "LEE",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "-0.125909",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.715598",
+          "ticker_sentiment_score": "-0.216643",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.703080",
+          "ticker_sentiment_score": "-0.245053",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "MSFT",
+          "relevance_score": "0.634487",
+          "ticker_sentiment_score": "-0.202366",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.835331",
+          "ticker_sentiment_score": "-0.229131",
+          "ticker_sentiment_label": "Somewhat-Bearish"
+        }
+      ]
+    },
+    {
+      "title": "Russian Strikes on Ukrainian Data Centers Leave 100,000 Households Without Internet",
+      "url": "https://finance.biggo.com/news/22e1959f-bcce-4814-ae29-c3e4688424e3",
+      "time_published": "20260926T181950",
+      "authors": [],
+      "summary": "Russian forces have broadened their attacks in Ukraine to include data centers and internet providers, resulting in four deaths and leaving approximately 100,000 households without internet access. This campaign targets critical digital infrastructure, raising questions about the legality of striking dual-use facilities that house both military and civilian services. Ukrainian officials emphasize the network's resilience due to its decentralized architecture, though local disruptions and increased costs are anticipated.",
+      "banner_image": "https://img.biggo.com/UYTsuf2cFkHwzllx2kc8Bi0F8rEQ_SPfFY13htPlWzU/fit/1720/0/sm/0/aHR0cHM6Ly9pbWcuYmdvLm9uZS9uZXdzLWltYWdlL2FpX2dlbmVyYXRlZC8yMDI2LTA5LzIyZTE5NTlmLWJjY2UtNDgxNC1hZTI5LWMzZTQ2ODg0MjRlM18xNzkwNDQ3MjAyX2RlZmF1bHQuanBn.webp",
+      "source": "BigGo Finance",
+      "category_within_source": "General",
+      "source_domain": "BigGo Finance",
+      "topics": [
+        {
+          "topic": "technology",
+          "relevance_score": "0.900083"
+        },
+        {
+          "topic": "economy_macro",
+          "relevance_score": "0.709558"
+        }
+      ],
+      "overall_sentiment_score": -0.263117,
+      "overall_sentiment_label": "Somewhat-Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "KYIVW",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "-0.705854",
+          "ticker_sentiment_label": "Bearish"
+        },
+        {
+          "ticker": "MSFT",
+          "relevance_score": "0.614928",
+          "ticker_sentiment_score": "-0.115655",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.626746",
+          "ticker_sentiment_score": "-0.148977",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "GOOGL",
+          "relevance_score": "0.623607",
+          "ticker_sentiment_score": "-0.141401",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "AMZN",
+          "relevance_score": "0.649747",
+          "ticker_sentiment_score": "-0.131607",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Apple has been ordered to pay a record $5.7 billion in a case concerning a patent for haptic feedback technology",
+      "url": "https://unn.ua/en/news/apple-has-been-ordered-to-pay-a-record-dollar57-billion-in-a-case-concerning-a-patent-for-haptic-feedback-technology",
+      "time_published": "20260926T164944",
+      "authors": [
+        "Olga Rozgon"
+      ],
+      "summary": "A U.S. jury has ordered Apple to pay California-based company Taction over $5.7 billion for infringing two patents related to haptic feedback technology used in the iPhone and Apple Watch. Apple plans to appeal the decision, stating that its Taptic Engine is fundamentally different from Taction's technology and that it does not use Taction's intellectual property. This award marks the largest of its kind in U.S. history.",
+      "banner_image": "https://unn.ua/_next/image?url=https%3A%2F%2Fimg.unn.ua%2Fimg%2F2026%2F09%2F26%2F1790439618-4929-large.webp&w=720&q=75",
+      "source": "Ð£ÐºÑ€Ð°Ñ—Ð½ÑÑŒÐºÑ– ÐÐ°Ñ†Ñ–Ð¾Ð½Ð°Ð»ÑŒÐ½Ñ– ÐÐ¾Ð²Ð¸Ð½Ð¸ (Ð£ÐÐ)",
+      "category_within_source": "General",
+      "source_domain": "Ð£ÐºÑ€Ð°Ñ—Ð½ÑÑŒÐºÑ– ÐÐ°Ñ†Ñ–Ð¾Ð½Ð°Ð»ÑŒÐ½Ñ– ÐÐ¾Ð²Ð¸Ð½Ð¸ (Ð£ÐÐ)",
+      "topics": [
+        {
+          "topic": "technology",
+          "relevance_score": "1.000000"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.823730"
+        },
+        {
+          "topic": "earnings",
+          "relevance_score": "0.603679"
+        }
+      ],
+      "overall_sentiment_score": -0.424852,
+      "overall_sentiment_label": "Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "-0.442576",
+          "ticker_sentiment_label": "Bearish"
+        }
+      ]
+    },
+    {
+      "title": "US jury says Apple owes record $5.7 billion in haptic technology patent case",
+      "url": "https://www.reuters.com/legal/litigation/us-jury-says-apple-owes-record-57-billion-haptic-technology-patent-case-2026-09-26/",
+      "time_published": "20260926T141626",
+      "authors": [
+        "Blake Brittain"
+      ],
+      "summary": "A US jury has ordered Apple to pay San Diego-based Taction over $5.7 billion for infringing two of its patents related to haptic feedback technology used in iPhones and Apple Watches. Apple disputes the verdict, stating its Taptic Engine is fundamentally different from Taction's technology, and plans to appeal what is reportedly the largest such verdict to date. Taction, which applies its technology in headphones and gaming headsets, initiated the lawsuit in 2021, a case revived by a federal appeals court after an initial ruling favored Apple.",
+      "banner_image": "https://www.reuters.com/resizer/v2/X3UTESRJYJMF7C2NJVGKZAUEIE.jpg?auth=a436f4c3bfc246c6088d98ebe6a3ae3f23a03d4b7d44bb1d7d97034e29ac2d2e&width=1920&quality=80",
+      "source": "Reuters",
+      "category_within_source": "General",
+      "source_domain": "Reuters",
+      "topics": [
+        {
+          "topic": "retail_wholesale",
+          "relevance_score": "0.716054"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "1.000000"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.649175"
+        }
+      ],
+      "overall_sentiment_score": -0.446757,
+      "overall_sentiment_label": "Bearish",
+      "ticker_sentiment": [
+        {
+          "ticker": "AAPL",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "-0.414660",
+          "ticker_sentiment_label": "Bearish"
+        }
+      ]
+    },
+    {
+      "title": "Meta gives Muse an adorable mascot amid AI doomerism",
+      "url": "https://www.axios.com/2026/09/25/ai-doom-meta-muse-mascot",
+      "time_published": "20260926T105102",
+      "authors": [
+        "Simon Hernandez-Arthur"
+      ],
+      "summary": "Meta has introduced Jollybot, an adorable, rosy-cheeked mascot for its new AI agent, Muse, aiming to promote mass consumer adoption. The friendly character, designed by Alex Cornell, seeks to present AI as a useful companion rather than a threat, distinguishing Muse from other AI apps. While Jollybot helps build trust, its customizability and brand risks, as highlighted by controversial memes posted by Meta's chief AI officer, also present unique challenges.",
+      "banner_image": "https://images.axios.com/bTwQdpihpcvBE-aUIlE6sBgg9Ns=/0x611:5863x3909/1920x1080/2026/09/24/1790276275992.jpeg?w=3840",
+      "source": "Axios",
+      "category_within_source": "General",
+      "source_domain": "Axios",
+      "topics": [
+        {
+          "topic": "technology",
+          "relevance_score": "0.913091"
+        }
+      ],
+      "overall_sentiment_score": 0.124262,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "MUSE",
+          "relevance_score": "0.308275",
+          "ticker_sentiment_score": "0.014056",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.966078",
+          "ticker_sentiment_score": "0.287625",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.607527",
+          "ticker_sentiment_score": "0.141376",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "MSFT",
+          "relevance_score": "0.586289",
+          "ticker_sentiment_score": "0.062847",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "Arm Holdings plc (ARM) Stock Price, News, Quote & History",
+      "url": "https://ca.finance.yahoo.com/quote/ARM/latest-news/",
+      "time_published": "20260926T085257",
+      "authors": [],
+      "summary": "This page provides an overview of Arm Holdings plc (ARM) stock information, including its current price, news headlines, and performance data. It highlights recent stock movements, analyst insights regarding AI CPU demand, and ARM's role in agentic AI. The article also includes performance metrics showing significant year-to-date and 1-year returns for ARM.",
+      "banner_image": null,
+      "source": "Yahoo! Finance Canada",
+      "category_within_source": "General",
+      "source_domain": "Yahoo! Finance Canada",
+      "topics": [
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.931999"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.832939"
+        },
+        {
+          "topic": "earnings",
+          "relevance_score": "0.733961"
+        }
+      ],
+      "overall_sentiment_score": 0.237136,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "ARM",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.270677",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "NVDA",
+          "relevance_score": "0.623111",
+          "ticker_sentiment_score": "0.345898",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "META",
+          "relevance_score": "0.641539",
+          "ticker_sentiment_score": "0.274859",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.587299",
+          "ticker_sentiment_score": "0.144106",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    },
+    {
+      "title": "17,569 VeriSign, Inc. $VRSN Shares Sold by Envestnet Asset Management Inc.",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-17569-verisign-inc-vrsn-shares-sold-by-envestnet-asset-management-inc-2026-09-26/",
+      "time_published": "20260926T074942",
+      "authors": [
+        "MarketBeat"
+      ],
+      "summary": "Envestnet Asset Management Inc. reduced its stake in VeriSign, Inc. (NASDAQ:VRSN) by 3.2% in the second quarter, selling 17,569 shares but still holding 531,550 shares valued at $133.7 million. Other institutional investors also adjusted their positions, and 92.9% of VRSN's stock is collectively owned by institutional investors. VeriSign reported strong quarterly financials, including revenue of $434.6 million and earnings of $2.38 per share, exceeding analyst expectations, and maintains a \"Moderate Buy\" consensus rating with an average price target of $333.00.",
+      "banner_image": "https://www.marketbeat.com/logos/verisign-inc-logo-1200x675.png",
+      "source": "MarketBeat",
+      "category_within_source": "General",
+      "source_domain": "MarketBeat",
+      "topics": [
+        {
+          "topic": "earnings",
+          "relevance_score": "0.914485"
+        },
+        {
+          "topic": "financial_markets",
+          "relevance_score": "0.844727"
+        },
+        {
+          "topic": "finance",
+          "relevance_score": "0.715241"
+        },
+        {
+          "topic": "technology",
+          "relevance_score": "0.641402"
+        }
+      ],
+      "overall_sentiment_score": 0.15741,
+      "overall_sentiment_label": "Somewhat-Bullish",
+      "ticker_sentiment": [
+        {
+          "ticker": "VRSN",
+          "relevance_score": "1.000000",
+          "ticker_sentiment_score": "0.209615",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.600244",
+          "ticker_sentiment_score": "0.116342",
+          "ticker_sentiment_label": "Neutral"
+        }
+      ]
+    }
+  ]
+}
