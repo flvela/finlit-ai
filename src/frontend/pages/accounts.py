@@ -210,6 +210,7 @@ def create_chart_container(time_series_daily, quote_data):
   )
   st.altair_chart(chart)
 
+
 def show_portfolio_item_details_expander(portfolio_manager, portfolio_positions_df, ticker):
   """used the given portfolio container to display portfolio item details"""
   purchase_history, research = st.tabs([PURCHASE_HISTORY_TAB, RESEARCH_TAB])
@@ -225,6 +226,7 @@ def show_portfolio_item_details_expander(portfolio_manager, portfolio_positions_
     create_overview_container(portfolio_manager.get_overview(ticker))
   with news_sentiment_col:
     create_news_feed_container(portfolio_manager.get_news_sentiment(ticker))
+
 
 def show_portfolio_tab():
   """show the portfolio tab"""
