@@ -214,8 +214,8 @@ def create_news_page_container(news_slot_container, news_sentiment_df):
   table_data = []
   for _, row in news_sentiment_df.iterrows():
     link_markdown = f"[{row[TITLE_KEY]}]({row[URL_KEY]})"
-    source_date = f"\n\n:gray[{row[SOURCE_DOMAIN_KEY]}]\n\n"\
-      f"{datetime.strptime(row[TIME_PUBLISHED_KEY], "%Y%m%dT%H%M%S").strftime("%b %d, %Y %H:%M")}"
+    published_date = datetime.strptime(row[TIME_PUBLISHED_KEY], "%Y%m%dT%H%M%S").strftime("%b %d, %Y %H:%M")
+    source_date = f"\n\n:gray[{row[SOURCE_DOMAIN_KEY]}]\n\n{published_date}"
     sentiment = f"{format_sentiment(row[OVERALL_SENTIMENT_LABEL_KEY])}"
     table_data.append((link_markdown, source_date, sentiment))
   news_slot_container.table(table_data, border="horizontal", width="stretch")
