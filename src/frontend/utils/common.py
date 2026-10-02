@@ -21,6 +21,7 @@ REQUIRED_CONFIG = [
   EMBEDDINGS_MODEL_API_KEY_CONFIG,
   EMBEDDINGS_MODEL_CONFIG
 ]
+PORTFOLIO_ANALYSIS_RESULT_CONFIG = "portfolio_analysis_result"
 CONFIG_FAILED = "config_failed"
 CONFIG_ERROR_MESSAGE = "config_error_messages"
 FINANCE_ARTICLE_FILES = ["data/finance_edu/aicpa_articles.json", "data/finance_edu/investopedia_articles.json"]

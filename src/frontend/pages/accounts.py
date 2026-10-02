@@ -6,7 +6,14 @@ import pandas as pd
 import altair as alt
 
 from frontend.components.ui_config import configure_application
-from frontend.utils.common import CONFIG_ERROR_MESSAGE, PORTFOLIO_MANAGER_CONFIG, config_missing_message, is_config_complete
+from frontend.utils.common import (
+  CONFIG_ERROR_MESSAGE,
+  FINLIT_ASSISTANT_CONFIG,
+  PORTFOLIO_ANALYSIS_RESULT_CONFIG,
+  PORTFOLIO_MANAGER_CONFIG,
+  config_missing_message,
+  is_config_complete
+)
 from tools.alpha_vantage_client import CLOSE_COLUMN, DATE_KEY
 from tools.portfolio_manager import (
   DAILY_TOTAL_COLUMN,
@@ -74,6 +81,7 @@ TICKER_SENTIMENT_KEY = "ticker_sentiment"
 OVERALL_SENTIMENT_LABEL_KEY = "overall_sentiment_label"
 
 ADD_PURCHASE_BUTTON = ":material/add: Purchase"
+UPLOAD_CSV_BUTTON = ":material/upload_file: CSV"
 
 
 @st.dialog("Add Purchase")
@@ -286,6 +294,28 @@ def show_portfolio_tab():
     st.badge(label="Add purchases to see account summary and insights", color="blue", icon=":material/info:")
 
 
+def show_analysis_tab():
+  """show the analysis tab"""
+  st.info(":material/info: Portfolio Analysis will perform an AI-assisted analysis of your current positions."
+          "Analysis is for informational and educational purposes and should not replace expert financial advice."
+          "\n Please consult with a financial expert before making any trade decisions based on this analysis")
+  if st.button(":material/search_insights: Analyze Portfolio"):
+    assistant = st.session_state[FINLIT_ASSISTANT_CONFIG]
+    assistant.reset()
+    prompt = "analyze Portfolio"
+    with st.status(":material/search_insights: Peforming Analysis") as status:
+      st.session_state[PORTFOLIO_ANALYSIS_RESULT_CONFIG] = assistant.ask(prompt)
+      status.update(label="Analysis Complete", state="complete")
+
+  result_placeholder = st.empty()
+
+  if (PORTFOLIO_ANALYSIS_RESULT_CONFIG in st.session_state
+      and st.session_state[PORTFOLIO_ANALYSIS_RESULT_CONFIG] is not None):
+    result_placeholder.markdown(st.session_state[PORTFOLIO_ANALYSIS_RESULT_CONFIG])
+  else:
+    result_placeholder.markdown("")
+
+
 def accounts_page():
   """displays the account page"""
   st.header("Accounts & Trade", text_alignment="center")
@@ -298,15 +328,17 @@ def accounts_page():
     left, right, _ = st.columns([1, 1, 10], gap="xxsmall")
     if left.button(ADD_PURCHASE_BUTTON):
       add_purchase()
-    if right.button("Import CSV"):
+    if right.button(UPLOAD_CSV_BUTTON):
       import_csv()
 
-    summary_tab, portfolio_tab, _ = st.tabs([SUMMARY_TAB, POSITIONS_TAB, ANALYSIS_TAB])
+    summary_tab, portfolio_tab, analysis_tab = st.tabs([SUMMARY_TAB, POSITIONS_TAB, ANALYSIS_TAB])
 
     with summary_tab:
       show_summary_tab()
     with portfolio_tab:
       show_portfolio_tab()
+    with analysis_tab:
+      show_analysis_tab()
   else:
     if CONFIG_ERROR_MESSAGE in st.session_state:
       st.error(st.session_state[CONFIG_ERROR_MESSAGE])
