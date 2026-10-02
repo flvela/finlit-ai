@@ -1,13 +1,14 @@
 """Accounts page for FinLit app"""
-from datetime import date, datetime
-from dateutil.relativedelta import relativedelta
+from datetime import datetime
 
-import altair as alt
 import streamlit as st
 import pandas as pd
+import altair as alt
 
+from frontend.components.ui_config import configure_application
+from frontend.utils.common import CONFIG_ERROR_MESSAGE, PORTFOLIO_MANAGER_CONFIG, config_missing_message, is_config_complete
 from tools.alpha_vantage_client import CLOSE_COLUMN, DATE_KEY
-from tools.portfolio import (
+from tools.portfolio_manager import (
   DAILY_TOTAL_COLUMN,
   PURCHASE_DATE_COLUMN,
   PURCHASE_PRICE_COLUMN,
@@ -15,10 +16,8 @@ from tools.portfolio import (
   TERM_COLUMN,
   TICKER_COLUMN,
   TOTAL_COST_COLUMN,
-  TOTAL_GAIN_LOSS_COLUMN,
-  PortfolioManager
+  TOTAL_GAIN_LOSS_COLUMN
 )
-from frontend.utils.common import PORTFOLIO_MANAGER_CONFIG
 
 SUMMARY_TAB = "Summary"
 POSITIONS_TAB = "Positions"
@@ -34,6 +33,7 @@ PORTFOLIO_CSV_INPUT = "Select Portfolio csv to import"
 
 DATE_LABEL = "Date"
 TOTAL_LABEL = "Total"
+PRICE_LABEL = "Price"
 
 PURCHASE_FLOAT_REGEX = r"^\d+\.\d+$"
 FORMATTED_DATE_COLUMN = "formatted_date"
@@ -62,7 +62,18 @@ ADDRESS_KEY = "Address"
 DESCRIPTION_KEY = "Description"
 
 # news sentiment response keys
-FEED_KEY = "Feed"
+FEED_KEY = "feed"
+NEWS_PAGINATION_KEY = "news_pagination"
+TITLE_KEY = "title"
+URL_KEY = "url"
+TIME_PUBLISHED_KEY = "time_published"
+AUTHORS_KEY = "authors"
+BANNER_IMAGE_KEY = "banner_image"
+SOURCE_DOMAIN_KEY = "source_domain"
+TICKER_SENTIMENT_KEY = "ticker_sentiment"
+OVERALL_SENTIMENT_LABEL_KEY = "overall_sentiment_label"
+
+ADD_PURCHASE_BUTTON = ":material/add: Purchase"
 
 
 @st.dialog("Add Purchase")
@@ -74,7 +85,7 @@ def add_purchase():
                                  validate=(PURCHASE_FLOAT_REGEX, "Price should be of format 123.45"))
   purchase_amount = st.text_input(PURCHASE_AMOUNT_INPUT,
                                   validate=(PURCHASE_FLOAT_REGEX, "Amount should be of format 123.45"))
-  if st.button("Add Purchase"):
+  if st.button(ADD_PURCHASE_BUTTON):
     st.session_state[PORTFOLIO_MANAGER_CONFIG].add_purchase(ticker, purchase_date,
                                                             float(purchase_price), float(purchase_amount))
     st.rerun()
@@ -99,7 +110,6 @@ def show_summary_tab():
 
     portfolio_summary_df = portfolio_manager.get_portfolio_summary_df()
     portfolio_summary_df = portfolio_summary_df.groupby([DATE_KEY])[DAILY_TOTAL_COLUMN].sum().reset_index()
-    account_summary_container.dataframe(portfolio_summary_df)
     chart = (
         alt.Chart(portfolio_summary_df)
         .mark_line(point=True)
@@ -114,49 +124,39 @@ def show_summary_tab():
     )
     account_summary_container.altair_chart(chart)
 
-    treasury_yield = portfolio_manager.get_treasury_yield("10year", "monthly")
-    if "data" in treasury_yield:
-      treasury_yield_df = pd.DataFrame(portfolio_manager.get_treasury_yield("10year", "monthly")["data"])
-      account_summary_container.write("Treasury Yield 10 year")
-      three_months_ago = date.today() - relativedelta(month=3)
-      account_summary_container.write(three_months_ago)
-      treasury_yield_df = treasury_yield_df[treasury_yield_df["date"] > str(three_months_ago)]
-      account_summary_container.dataframe(treasury_yield_df)
-      account_summary_container.line_chart(treasury_yield_df, x="date", y="value", x_label=DATE_LABEL, y_label="% Yield")
-    else:
-      account_summary_container.warning("Treasury yield not available")
-      account_summary_container.warning(treasury_yield)
-
   else:
     st.badge(label="Add purchases to see account summary and insights", color="blue", icon=":material/info:")
 
 
 def create_quote_container(quote_data):
   """creates a quote container"""
-  col1, col2 = st.columns(2)
-  col1.markdown("**Quote**")
-  col2.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-  st.markdown(f"**{quote_data[QUOTE_KEY]}**")
-  col1, col2 = st.columns(2)
-  col1.write("Day Range")
-  col2.slider("Day Range",
+  st.markdown("**Quote**")
+  if QUOTE_KEY not in quote_data:
+    st.warning("Quote data not available")
+    st.warning(quote_data)
+  else:
+    st.slider("Quote",
               min_value=float(quote_data[LOW_KEY]),
               max_value=float(quote_data[HIGH_KEY]),
               value=float(quote_data[QUOTE_KEY]),
               label_visibility="collapsed",
               disabled=True)
 
-  quote_table_data = {
-    "Open": float(quote_data[OPEN_KEY]),
-    "High": float(quote_data[HIGH_KEY]),
-    "Low": float(quote_data[LOW_KEY]),
-    "Volume": float(quote_data[VOLUMNE_KEY]),
-    "Previous Trading Day":  quote_data[PREVIOUS_DATE_KEY],
-    "Previous Trading Close": float(quote_data[PREVIOUS_CLOSE_KEY]),
-    "Change": float(quote_data[CHANGE_KEY]),
-    "Change %": quote_data[CHANGE_PERCENT_KEY],
-  }
-  st.table(quote_table_data, border="horizontal")
+    change_icon = ":material/trending_up:" if float(quote_data[CHANGE_KEY]) > 0 else ":material/trending_down:"
+
+    quote_table_data = {
+      ":material/calendar_month: Date": datetime.now().strftime("%b %d, %Y"),
+      ":material/sell: Price": float(quote_data[QUOTE_KEY]),
+      ":material/arrow_forward: Open": float(quote_data[OPEN_KEY]),
+      ":material/vertical_align_top: High": float(quote_data[HIGH_KEY]),
+      ":material/vertical_align_bottom: Low": float(quote_data[LOW_KEY]),
+      ":material/functions: Volume": float(quote_data[VOLUMNE_KEY]),
+      ":material/calendar_month: Previous Trading Day":  quote_data[PREVIOUS_DATE_KEY],
+      ":material/sell: Previous Trading Close": float(quote_data[PREVIOUS_CLOSE_KEY]),
+      f"{change_icon} Change": float(quote_data[CHANGE_KEY]),
+      f"{change_icon} Change %": quote_data[CHANGE_PERCENT_KEY],
+    }
+    st.table(quote_table_data, border="horizontal")
 
 
 def create_overview_container(overview_data):
@@ -178,33 +178,67 @@ def create_overview_container(overview_data):
     st.write(overview_data[DESCRIPTION_KEY])
 
 
-def create_news_feed_container(news_sentiment_data):
+def create_news_feed_container(news_sentiment_data, ticker):
   """creates the news feed container"""
   st.markdown("**News**")
   if FEED_KEY in news_sentiment_data:
-    st.dataframe(news_sentiment_data[FEED_KEY])
+    news_feed_df = pd.DataFrame(news_sentiment_data[FEED_KEY])
+    rows_per_page = 5
+    total_pages = (len(news_feed_df) + rows_per_page - 1)//rows_per_page
+    news_container = st.container(width="stretch")
+    with st.container(horizontal_alignment="right", width="stretch"):
+      page = st.pagination(key=f"{NEWS_PAGINATION_KEY}_{ticker}", num_pages=total_pages)
+
+    start_idx = (page - 1) * rows_per_page
+    end_idx = start_idx + rows_per_page
+    create_news_page_container(news_container, news_feed_df.iloc[start_idx: end_idx])
   else:
     st.warning("News Sentiment data not available")
     st.warning(news_sentiment_data)
 
 
+def format_sentiment(sentiment):
+  """formats the sentiment with a markdown badge"""
+  sentiment_dict = {
+    "Bearish": ":red-badge[Bearish]",
+    "Somewhat-Bearish": ":yellow-badge[Somewhat-Bearish]",
+    "Neutral": ":gray-badge[Neutral]",
+    "Somewhat-Bullish": ":blue-badge[Somewhat_Bullish]",
+    "Bullish": ":green-badge[Bullish]"
+  }
+  return sentiment_dict[sentiment]
+
+
+def create_news_page_container(news_slot_container, news_sentiment_df):
+  """creates the container to display news page data"""
+  table_data = []
+  for _, row in news_sentiment_df.iterrows():
+    link_markdown = f"[{row[TITLE_KEY]}]({row[URL_KEY]})"
+    published_date = datetime.strptime(row[TIME_PUBLISHED_KEY], "%Y%m%dT%H%M%S").strftime("%b %d, %Y %H:%M")
+    source_date = f"\n\n:gray[{row[SOURCE_DOMAIN_KEY]}]\n\n{published_date}"
+    sentiment = f"{format_sentiment(row[OVERALL_SENTIMENT_LABEL_KEY])}"
+    table_data.append((link_markdown, source_date, sentiment))
+  news_slot_container.table(table_data, border="horizontal", width="stretch")
+
+
 def create_chart_container(time_series_daily, quote_data):
-  """creates the quote container"""
+  """creates the chart container"""
+  st.markdown("**Chart**")
   time_series_daily = time_series_daily.groupby([DATE_KEY])[CLOSE_COLUMN].sum().reset_index()
   time_series_daily = time_series_daily.rename(columns={CLOSE_COLUMN: DAILY_TOTAL_COLUMN})
   todays_row = pd.DataFrame([
     {DAILY_TOTAL_COLUMN: quote_data[QUOTE_KEY], DATE_KEY: datetime.now()}])
   time_series_daily = pd.concat([time_series_daily, todays_row], ignore_index=True)
-  st.dataframe(time_series_daily)
+
   chart = (
       alt.Chart(time_series_daily)
       .mark_line(point=True)
       .encode(
         x=alt.X(ALTAIR_DATE_COLUMN, axis=alt.Axis(format='%b %d', title=DATE_LABEL)),
-        y=alt.Y(ALTAIR_TOTAL_COLUMN, axis=alt.Axis(format="$,.2f", title=TOTAL_LABEL)),
+        y=alt.Y(ALTAIR_TOTAL_COLUMN, axis=alt.Axis(format="$,.2f", title=PRICE_LABEL)),
         tooltip=[
           alt.Tooltip(ALTAIR_DATE_COLUMN, title=DATE_LABEL),
-          alt.Tooltip(ALTAIR_CLOSE_COLUMN, title=TOTAL_LABEL)
+          alt.Tooltip(ALTAIR_TOTAL_COLUMN, title=PRICE_LABEL)
         ]
       )
   )
@@ -225,7 +259,7 @@ def show_portfolio_item_details_expander(portfolio_manager, portfolio_positions_
   with overview_col:
     create_overview_container(portfolio_manager.get_overview(ticker))
   with news_sentiment_col:
-    create_news_feed_container(portfolio_manager.get_news_sentiment(ticker))
+    create_news_feed_container(portfolio_manager.get_news_sentiment(ticker), ticker)
 
 
 def show_portfolio_tab():
@@ -257,21 +291,26 @@ def accounts_page():
   st.header("Accounts & Trade", text_alignment="center")
   st.set_page_config(layout="wide")
 
-  if PORTFOLIO_MANAGER_CONFIG not in st.session_state:
-    st.session_state[PORTFOLIO_MANAGER_CONFIG] = PortfolioManager()
+  if is_config_complete():
+    if PORTFOLIO_MANAGER_CONFIG not in st.session_state:
+      configure_application()
 
-  left, right, _ = st.columns([1, 1, 10], gap="xxsmall")
-  if left.button("Add Purchase"):
-    add_purchase()
-  if right.button("Import CSV"):
-    import_csv()
+    left, right, _ = st.columns([1, 1, 10], gap="xxsmall")
+    if left.button(ADD_PURCHASE_BUTTON):
+      add_purchase()
+    if right.button("Import CSV"):
+      import_csv()
 
-  summary_tab, portfolio_tab, _ = st.tabs([SUMMARY_TAB, POSITIONS_TAB, ANALYSIS_TAB])
+    summary_tab, portfolio_tab, _ = st.tabs([SUMMARY_TAB, POSITIONS_TAB, ANALYSIS_TAB])
 
-  with summary_tab:
-    show_summary_tab()
-  with portfolio_tab:
-    show_portfolio_tab()
+    with summary_tab:
+      show_summary_tab()
+    with portfolio_tab:
+      show_portfolio_tab()
+  else:
+    if CONFIG_ERROR_MESSAGE in st.session_state:
+      st.error(st.session_state[CONFIG_ERROR_MESSAGE])
+    st.warning(f"Please configure your application in sidebar. {config_missing_message()}")
 
 
 accounts_page()

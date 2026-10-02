@@ -163,7 +163,7 @@ def test_alpha_vantage_get_treasury_yield(requests_mock):
     interval = "monthly"
     cache_key = f"{maturity}_{interval}"
 
-    response = client.get_treasury_yield(maturity=maturity, interval="monthly")
+    response = client.get_treasury_yield(maturity=maturity, interval=interval)
     assert response is not None
     assert client.call_count == 1
     assert len(client.function_caches) == 1

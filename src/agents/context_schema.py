@@ -7,6 +7,14 @@ from langchain.chat_models import BaseChatModel
 from langchain.tools import BaseTool
 from langchain_chroma import Chroma
 from tools.articles import search_finance_articles
+from tools.portfolio_manager import (
+  PortfolioManager,
+  get_global_quote,
+  get_portfolio_summary,
+  get_ticker_overview,
+  get_time_series_daily,
+  get_treasury_yield
+)
 
 
 @dataclass
@@ -20,9 +28,19 @@ class ContextSchema:
   financial_faq_llm: BaseChatModel
   # the financial faq tools
   financial_faq_tools: List[BaseTool]
+  # portfolio manager
+  portfolio_manager: PortfolioManager
+  # portfolio llm
+  portfolio_llm: BaseChatModel
+  # portfolio tools
+  portfolio_tools: List[BaseTool]
 
-  def __init__(self, article_collection: Chroma, llm: BaseChatModel):
+  def __init__(self, article_collection: Chroma, llm: BaseChatModel, portfolio_manager: PortfolioManager):
     self.article_collection = article_collection
     self.llm = llm
     self.financial_faq_tools = [search_finance_articles]
     self.financial_faq_llm = llm.bind_tools(self.financial_faq_tools)
+    self.portfolio_manager = portfolio_manager
+    self.portfolio_tools = [get_time_series_daily, get_global_quote, get_treasury_yield,
+                            get_ticker_overview, get_portfolio_summary]
+    self.portfolio_llm = llm.bind_tools(self.portfolio_tools)

@@ -3,10 +3,11 @@ from datetime import datetime
 import os
 import shutil
 
+import pandas as pd
 import pytest
 from testutils.common import MOCK_DATA_KEY, TEST_URL_AND_MOCK_MAPPING, URL_KEY, read_json_file
-from tools.alpha_vantage_client import COMPANY_LOGO_FUNCTION, AlphaVantageClient
-from tools.portfolio import (
+from tools.alpha_vantage_client import COMPANY_LOGO_FUNCTION, TREASURY_YIELD_FUNCTION, AlphaVantageClient
+from tools.portfolio_manager import (
   COST_BASIS_COLUMN,
   DATE_FORMAT,
   PURCHASE_DATE_COLUMN,
@@ -14,6 +15,8 @@ from tools.portfolio import (
   RUNNING_SHARES_TOTAL_COLUMN,
   SHARES_COLUMN,
   TICKER_COLUMN,
+  TREASURY_DATA_KEY,
+  TREASURY_DATE_COLUMN,
   CSVPortfolioStore,
   PortfolioManager
 )
@@ -269,5 +272,21 @@ def test_portfolio_manager_company_logo(requests_mock):
     expected_logo_url = "https://cdn.alphavantage.co/logos/IBM.png"
     logo_url = portfolio_manager.get_company_logo("IBM")
     assert logo_url == expected_logo_url
+  finally:
+    shutil.rmtree(TEST_PERSIST_DIRECTORY)
+
+
+def test_portfolio_manager_get_treasury_yield(requests_mock):
+  """tests the PortfolioManagerget_treasury_yield"""
+  try:
+    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, persist_directory=TEST_PERSIST_DIRECTORY)
+    url = TEST_URL_AND_MOCK_MAPPING[TREASURY_YIELD_FUNCTION][URL_KEY]
+    mock_data = TEST_URL_AND_MOCK_MAPPING[TREASURY_YIELD_FUNCTION][MOCK_DATA_KEY]
+    requests_mock.get(url, json=read_json_file(mock_data), status_code=200)
+    response = portfolio_manager.get_treasury_yield(maturity="10year", interval="monthly")
+    assert len(response[TREASURY_DATA_KEY]) == 881
+    treasury_yield_df = pd.DataFrame(response[TREASURY_DATA_KEY])
+    treasury_yield_df = treasury_yield_df.sort_values(by=TREASURY_DATE_COLUMN).tail(100)
+    assert len(treasury_yield_df) == 100
   finally:
     shutil.rmtree(TEST_PERSIST_DIRECTORY)

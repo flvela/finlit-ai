@@ -7,6 +7,8 @@ from agents import state
 from agents.graph import (
   FINANCE_FAQ_NODE,
   FINANCE_FAQ_TOOL_NODE,
+  PORTFOLIO_AGENT_NODE,
+  PORTFOLIO_AGENT_TOOL_NODE,
   ROUTER_NODE,
   build_graph
 )
@@ -14,6 +16,7 @@ from agents.graph import (
 from tools.articles import ARTICLE_COLLECTION_NAME, DEMO_ARTICLES, load_article_documents
 from tools.config import Config
 from tools.logger import get_logger
+from tools.portfolio_manager import PortfolioManager
 from tools.vector_store import PERSIST_DIRECTORY, VectorStore
 
 logger = get_logger(__name__)
@@ -21,13 +24,15 @@ logger = get_logger(__name__)
 
 def test_build_graph():
   """unit test for build_graph"""
-  expected_nodes = [START, ROUTER_NODE, FINANCE_FAQ_NODE, FINANCE_FAQ_TOOL_NODE, END]
+  expected_nodes = [START, ROUTER_NODE, FINANCE_FAQ_NODE, FINANCE_FAQ_TOOL_NODE,
+                    PORTFOLIO_AGENT_NODE, PORTFOLIO_AGENT_TOOL_NODE, END]
   expected_edges = {
     START: {
       ROUTER_NODE: (False, None)
     },
     ROUTER_NODE: {
-      FINANCE_FAQ_NODE: (True, state.FINANCE_FAQ)
+      FINANCE_FAQ_NODE: (True, state.FINANCE_FAQ),
+      PORTFOLIO_AGENT_NODE: (True, state.PORTFOLIO_ANALYSIS)
     },
     FINANCE_FAQ_NODE: {
       FINANCE_FAQ_TOOL_NODE: (True, state.FINANCE_FAQ_TOOLS),
@@ -35,6 +40,13 @@ def test_build_graph():
     },
     FINANCE_FAQ_TOOL_NODE: {
       FINANCE_FAQ_NODE: (False, None)
+    },
+    PORTFOLIO_AGENT_NODE: {
+      PORTFOLIO_AGENT_TOOL_NODE: (True, state.PORTFOLIO_AGENT_TOOLS),
+      END: (True, state.GRAPH_END)
+    },
+    PORTFOLIO_AGENT_TOOL_NODE: {
+      PORTFOLIO_AGENT_NODE: (False, None)
     }
   }
 
@@ -44,7 +56,8 @@ def test_build_graph():
   article_collection = vector_store.get_create_collection(articles)
   config = Config()
   llm = config.get_llm()
-  graph, context = build_graph(finance_article_collection=article_collection, llm=llm)
+  portfolio_manager = PortfolioManager()
+  graph, context = build_graph(finance_article_collection=article_collection, llm=llm, portfolio_manager=portfolio_manager)
   try:
     graph_nodes = graph.get_graph().nodes.keys()
     assert list(graph.get_graph().nodes.keys()) == expected_nodes, f"Nodes {graph_nodes}, Expected Nodes {expected_nodes}"

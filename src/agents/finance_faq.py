@@ -1,16 +1,16 @@
 """defines the finance faq agent for the LangGraph graph"""
-from langchain.messages import AIMessage, HumanMessage, SystemMessage
+from langchain.messages import HumanMessage, SystemMessage
 from langgraph.runtime import Runtime
 
+from agents.common import get_output_state
+from agents.context_schema import ContextSchema
 from agents.state import (
   FINANCE_FAQ_TOOLS,
   GRAPH_END,
   MESSAGES_FIELD,
-  OUTPUT_FIELD,
   USER_INPUT_FIELD,
   FinLitState
 )
-from agents.context_schema import ContextSchema
 from tools.logger import get_logger
 
 FINANCE_FAQ_INSTRUCTIONS = """
@@ -38,16 +38,7 @@ def finance_faq_node(state: FinLitState, runtime: Runtime[ContextSchema]) -> Fin
   result = runtime.context.financial_faq_llm.invoke(messages)
 
   logger.info("finance_faq_node user input %s, llm response %s", human_message.content, result.content)
-  if result.tool_calls:
-    return {MESSAGES_FIELD: [*messages, result] if not state.get(MESSAGES_FIELD) else [result]}
-
-  output_text = result.content
-  if isinstance(result.content, list):
-    content = result.content[0]
-    if isinstance(content, dict) and 'text' in content:
-      output_text = content['text']
-
-  return {OUTPUT_FIELD: output_text, MESSAGES_FIELD: [AIMessage(content=result.content)]}
+  return get_output_state(state, result, messages)
 
 
 def finance_faq_should_continue(state: FinLitState) -> str:

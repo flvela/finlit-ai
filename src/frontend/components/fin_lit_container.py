@@ -8,6 +8,8 @@ from agents.state import (
 from agents.graph import (
   FINANCE_FAQ_NODE,
   FINANCE_FAQ_TOOL_NODE,
+  PORTFOLIO_AGENT_NODE,
+  PORTFOLIO_AGENT_TOOL_NODE,
   ROUTER_NODE
 )
 from frontend.components.graph_containers import (
@@ -23,8 +25,14 @@ class FinLitActivityContainer(GraphActivityContainer):
   def initialize_nodes_container(self, graph_container: DeltaGenerator):
     """Builds the UI containers to show graph status in the graph_container"""
     self.initialize_graph_node(ROUTER_NODE, graph_container)
-    self.initialize_graph_node(FINANCE_FAQ_NODE, graph_container)
-    self.initialize_graph_node(FINANCE_FAQ_TOOL_NODE, graph_container)
+    finance_and_portfolio_container = graph_container.container(border=False, gap='xxsmall')
+    finance_col, portfolio_col = finance_and_portfolio_container.columns(2)
+    self.initialize_graph_node(FINANCE_FAQ_NODE, finance_col)
+    self.initialize_graph_node(PORTFOLIO_AGENT_NODE, portfolio_col)
+    tools_container = graph_container.container(border=False, gap="xxsmall")
+    finance_tools_col, portfolio_tools_col = tools_container.columns(2)
+    self.initialize_graph_node(FINANCE_FAQ_TOOL_NODE, finance_tools_col)
+    self.initialize_graph_node(PORTFOLIO_AGENT_TOOL_NODE, portfolio_tools_col)
     self.initialize_graph_node(LANGRAPH_NODE_NAME, graph_container)
 
   def get_state_field_name_placeholders(self, state_container: DeltaGenerator):
