@@ -1,10 +1,11 @@
 """unit tests for portfolio store"""
 from datetime import datetime
-import json
 import os
+import shutil
 
 import pytest
-from tools.alpha_vantage_client import AlphaVantageClient
+from testutils.common import MOCK_DATA_KEY, TEST_URL_AND_MOCK_MAPPING, URL_KEY, read_json_file
+from tools.alpha_vantage_client import COMPANY_LOGO_FUNCTION, AlphaVantageClient
 from tools.portfolio import (
   COST_BASIS_COLUMN,
   DATE_FORMAT,
@@ -30,6 +31,7 @@ TEST_IBM_TIME_SERIES_URL = "https://www.alphavantage.co/query?function=TIME_SERI
 TEST_MSFT_TIME_SERIES_URL = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
 TEST_IBM_TIME_SERIES_JSON_PATH = "data/portfolio/mock_data/ibm_time_series_daily.json"
 TEST_MSFT_TIME_SERIES_JSON_PATH = "data/portfolio/mock_data/msft_time_series_daily.json"
+TEST_PERSIST_DIRECTORY = "data/portfolio/mock_data/client_logger/"
 
 test_data = [
   (False, 0),
@@ -131,7 +133,8 @@ def test_csv_portfolio_get_portfolio():
 
 def test_portfolio_manager_init():
   """tests the portfolio manager init"""
-  portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME)
+  portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME,
+                                       persist_directory=TEST_PERSIST_DIRECTORY)
   assert isinstance(portfolio_manager.alpha_vantage_client, AlphaVantageClient)
   assert isinstance(portfolio_manager.portfolio_store, CSVPortfolioStore)
   assert isinstance(portfolio_manager.last_update_time_series, datetime)
@@ -142,7 +145,8 @@ def test_portfolio_manager_init():
 def test_portfolio_manager_add_purchase():
   """tests the portfolio manager add_purchase method"""
   try:
-    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME)
+    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME,
+                                         persist_directory=TEST_PERSIST_DIRECTORY)
     assert len(portfolio_manager.get_portfolio()) == 0
     ticker = "APPL"
     purchase_date = "2025-09-25"
@@ -158,7 +162,8 @@ def test_portfolio_manager_add_purchase():
 def test_portfolio_manager_import_csv():
   """tests the portfolio manager import_csv method"""
   try:
-    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME)
+    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME,
+                                         persist_directory=TEST_PERSIST_DIRECTORY)
     assert len(portfolio_manager.get_portfolio()) == 0
     write_to_file(TEST_INPUT_CSV_FILE_NAME, TEST_INPUT_CSV)
     portfolio_manager.import_csv(TEST_INPUT_CSV_FILE_NAME)
@@ -175,24 +180,27 @@ test_time_series_data = [
 
 
 @pytest.mark.parametrize("has_portfolio_data, expected_time_series_size", test_time_series_data)
-def test_portfolio_manager_time_series_daily(has_portfolio_data, expected_time_series_size):
-  """tests the portfolio manager get_time_series_daily method"""
+def test_portfolio_manager_get_all_time_series_daily(has_portfolio_data, expected_time_series_size):
+  """tests the portfolio manager get_all_time_series_daily method"""
   try:
     if has_portfolio_data:
       write_to_file(TEST_NEW_FILE_NAME, TEST_INPUT_CSV)
-    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME)
-    time_series_df = portfolio_manager.get_time_series_daily()
+    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME,
+                                         persist_directory=TEST_PERSIST_DIRECTORY)
+    time_series_df = portfolio_manager.get_all_time_series_daily()
     assert len(time_series_df) == expected_time_series_size
   finally:
     if has_portfolio_data:
       os.remove(TEST_NEW_FILE_NAME)
+      shutil.rmtree(TEST_PERSIST_DIRECTORY)
 
 
 def test_portfolio_manager_get_portfolio_with_running_total_shares():
   """tests the portfolio manager get_portfolio_with_running_total_shares method"""
   try:
     write_to_file(TEST_NEW_FILE_NAME, TEST_INPUT_CSV)
-    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME)
+    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME,
+                                         persist_directory=TEST_PERSIST_DIRECTORY)
     portfolio_df = portfolio_manager.get_portfolio_with_running_total_shares()
     assert len(portfolio_df) == 4
     previous_date = None
@@ -212,12 +220,6 @@ def test_portfolio_manager_get_portfolio_with_running_total_shares():
     os.remove(TEST_NEW_FILE_NAME)
 
 
-def read_json_file(json_file):
-  """reads the given json file"""
-  with open(json_file, "r", encoding="utf-8") as file:
-    return json.load(file)
-
-
 def test_portfolio_manager_get_portfolio_summary_df(requests_mock):
   """tests the PortfolioManager get_portfolio_summary_df"""
   try:
@@ -228,12 +230,14 @@ def test_portfolio_manager_get_portfolio_summary_df(requests_mock):
     requests_mock.get(TEST_MSFT_TIME_SERIES_URL,
                       json=read_json_file(TEST_MSFT_TIME_SERIES_JSON_PATH),
                       status_code=200)
-    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME)
+    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME,
+                                         persist_directory=TEST_PERSIST_DIRECTORY)
     portfolio_summary_df = portfolio_manager.get_portfolio_summary_df()
     # 100 entries per ticker and 2 tickers (MSFT, IBM) = 200
     assert len(portfolio_summary_df) == 200
   finally:
     os.remove(TEST_NEW_FILE_NAME)
+    shutil.rmtree(TEST_PERSIST_DIRECTORY)
 
 
 def test_portfolio_manager_get_portfolio_positions_df(requests_mock):
@@ -246,8 +250,24 @@ def test_portfolio_manager_get_portfolio_positions_df(requests_mock):
     requests_mock.get(TEST_MSFT_TIME_SERIES_URL,
                       json=read_json_file(TEST_MSFT_TIME_SERIES_JSON_PATH),
                       status_code=200)
-    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME)
+    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, portfolio_csv=TEST_NEW_FILE_NAME,
+                                         persist_directory=TEST_PERSIST_DIRECTORY)
     portfolio_positions_df = portfolio_manager.get_portfolio_positions_df()
     assert len(portfolio_positions_df) == 4
   finally:
     os.remove(TEST_NEW_FILE_NAME)
+    shutil.rmtree(TEST_PERSIST_DIRECTORY)
+
+
+def test_portfolio_manager_company_logo(requests_mock):
+  """tests the PortfolioManager get_company_logo"""
+  try:
+    portfolio_manager = PortfolioManager(alpha_vantage_key=TEST_ALPHA_VANTAGE_KEY, persist_directory=TEST_PERSIST_DIRECTORY)
+    url = TEST_URL_AND_MOCK_MAPPING[COMPANY_LOGO_FUNCTION][URL_KEY]
+    mock_data = TEST_URL_AND_MOCK_MAPPING[COMPANY_LOGO_FUNCTION][MOCK_DATA_KEY]
+    requests_mock.get(url, json=read_json_file(mock_data), status_code=200)
+    expected_logo_url = "https://cdn.alphavantage.co/logos/IBM.png"
+    logo_url = portfolio_manager.get_company_logo("IBM")
+    assert logo_url == expected_logo_url
+  finally:
+    shutil.rmtree(TEST_PERSIST_DIRECTORY)
