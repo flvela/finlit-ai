@@ -73,6 +73,8 @@ SOURCE_DOMAIN_KEY = "source_domain"
 TICKER_SENTIMENT_KEY = "ticker_sentiment"
 OVERALL_SENTIMENT_LABEL_KEY = "overall_sentiment_label"
 
+ADD_PURCHASE_BUTTON = ":material/add: Purchase"
+
 
 @st.dialog("Add Purchase")
 def add_purchase():
@@ -83,7 +85,7 @@ def add_purchase():
                                  validate=(PURCHASE_FLOAT_REGEX, "Price should be of format 123.45"))
   purchase_amount = st.text_input(PURCHASE_AMOUNT_INPUT,
                                   validate=(PURCHASE_FLOAT_REGEX, "Amount should be of format 123.45"))
-  if st.button("Add Purchase"):
+  if st.button(ADD_PURCHASE_BUTTON):
     st.session_state[PORTFOLIO_MANAGER_CONFIG].add_purchase(ticker, purchase_date,
                                                             float(purchase_price), float(purchase_amount))
     st.rerun()
@@ -294,7 +296,7 @@ def accounts_page():
       configure_application()
 
     left, right, _ = st.columns([1, 1, 10], gap="xxsmall")
-    if left.button("Add Purchase"):
+    if left.button(ADD_PURCHASE_BUTTON):
       add_purchase()
     if right.button("Import CSV"):
       import_csv()

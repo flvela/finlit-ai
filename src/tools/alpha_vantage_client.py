@@ -102,7 +102,7 @@ class AlphaVantageClient:
 
   def news_sentiment(self, ticker: str):
     """get the news sentiment"""
-    params = {"symbol": ticker}
+    params = {"tickers": ticker}
     return self.get_and_cache_request_by_ticker(
       function=NEWS_SENTIMENT_FUNCTION,
       params=params,

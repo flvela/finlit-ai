@@ -22,7 +22,7 @@ TEST_URL_AND_MOCK_MAPPING = {
     MOCK_DATA_KEY: "data/portfolio/mock_data/ibm_company_logo.json"
   },
   NEWS_SENTIMENT_FUNCTION: {
-    URL_KEY: "https://www.alphavantage.co/query?function=NEWS_SENTIMENT&symbol=AAPL&apikey=demo",
+    URL_KEY: "https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&apikey=demo",
     MOCK_DATA_KEY: "data/portfolio/mock_data/aapl_news_sentiment.json"
   },
   GLOBAL_QUOTE_FUNCTION: {
