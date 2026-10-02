@@ -16,11 +16,13 @@ from frontend.utils.common import (
   MODEL_PROVIDER_CONFIG,
   FINLIT_ASSISTANT_CONFIG,
   FINANCE_ARTICLES_CONFIG,
+  PORTFOLIO_MANAGER_CONFIG,
   config_missing_message,
   is_config_complete
 )
 from tools.config import Config
 from tools.articles import load_article_documents
+from tools.portfolio_manager import PortfolioManager
 
 # model provider UI options for selectbox
 MODEL_PROVIDER_LABELS = ["OpenAI", "Anthropic"]
@@ -207,6 +209,9 @@ def load_finance_articles():
 def initialize_assisstant():
   """initializes the AI Assistant"""
   articles = load_finance_articles()
+  if PORTFOLIO_MANAGER_CONFIG not in st.session_state:
+    st.session_state[PORTFOLIO_MANAGER_CONFIG] = PortfolioManager()
+
   st.info(st.session_state)
   app_config = Config(
     model_provider=MODEL_PROVIDER_LABEL_TO_CONFIG[st.session_state[MODEL_PROVIDER_CONFIG]],
@@ -216,4 +221,5 @@ def initialize_assisstant():
     embeddings_model_name=st.session_state[EMBEDDINGS_MODEL_CONFIG],
     embeddings_model_api_key=st.session_state[EMBEDDINGS_MODEL_API_KEY_CONFIG])
 
-  st.session_state[FINLIT_ASSISTANT_CONFIG] = FinLitAssistant(financial_articles=articles, config=app_config)
+  st.session_state[FINLIT_ASSISTANT_CONFIG] = FinLitAssistant(financial_articles=articles, config=app_config,
+                                                              portfolio_manager=st.session_state[PORTFOLIO_MANAGER_CONFIG])
