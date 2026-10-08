@@ -23,9 +23,11 @@ flowchart LR
   User([User])
   UI[Streamlit UI <br/> src/frontend/app.py]
   Assistant[LangGraph Assistant <br/> src/assistant.py]
-  FinLitGraph[Graph <br/> Router, Finance FAQ and Tool Nodes <br/> src/graph.py]
+  FinLitGraph[Graph <br/> Router, Finance FAQ, Portfolio Analyzer and Tool Nodes <br/> src/graph.py]
   ArticlesDB[(Finance Articles DB <br/> src/tools/vector_store.py)]
+  PortfolioManager[Portfolio Manger <br/> src/tools/portfolio_manager.py]
   ModelProvider@{ shape: cloud, label: "Third party model API <br/> src/.env or UI config"}
+  StockMarketAPI@{ shape: cloud, label: "Third party stock market API (ie. Alpha Vantage) <br/>src/tools/alpha_vantage_client.py"}
 
   User -->|1. configures application| UI
   User -->|5. asks a question| UI
@@ -36,9 +38,11 @@ flowchart LR
   Assistant -->|7. queries with user input| FinLitGraph
   FinLitGraph -->|8.b queries DB using Finance FAQ Agent tool| ArticlesDB
   FinLitGraph -->|8.a prompts LLM using model provider API| ModelProvider
+  FinLitGraph -->|8.c calls portfolio analysis tools | PortfolioManager
+  PortfolioManager -->|9 requests stock market data | StockMarketAPI
 ```
-### Question Flowchart
-The flow chart below shows what happens when a user asks a single question. 
+### Financial FAQ Flowchart
+The flow chart below shows what happens when a user asks a financial FAQ question. 
 
 ```mermaid
 sequenceDiagram
@@ -77,6 +81,7 @@ sequenceDiagram
 |Agent framework     | [LangChain](https://www.langchain.com)                   | Generic way of creating AI agents and tools. Supports OpenAI, Anthropic, Google and more |
 |Agent orchestration | [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview)| Orchestration framework and runtime for managing, build and deploying stateful agents|
 |Vector DB           | [ChromaDB](https://docs.trychroma.com/) | Open source vector database supporting semantic and metadata search
+|Alpha Vantage API   | [Alpha Vantage API](https://www.alphavantage.co) | Stock Market Data API that can be used for fintech applications. It has a free tier API allowing for experimentation|
 
 ## 🚀 Quick Start
 
