@@ -60,3 +60,8 @@ def assert_agent_node_output_state(result: FinLitState, has_tool_calls: bool):
     assert len(tool_calls) > 0
   else:
     assert len(result[MESSAGES_FIELD]) > 0
+
+def write_to_file(file_name, value):
+  """writes to a file based on file name and value"""
+  with open(file_name, "w", encoding="utf-8") as file:
+    file.write(value)

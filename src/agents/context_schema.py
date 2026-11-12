@@ -6,15 +6,17 @@ from typing import List
 from langchain.chat_models import BaseChatModel
 from langchain.tools import BaseTool
 from langchain_chroma import Chroma
-from tools.articles import search_finance_articles
-from tools.portfolio_manager import (
-  PortfolioManager,
+
+from agents.analysis_tools import (
   get_global_quote,
   get_portfolio_summary,
   get_ticker_overview,
   get_time_series_daily,
   get_treasury_yield
 )
+from tools.articles import search_finance_articles
+from tools.market_manager import MarketManager
+from tools.portfolio_manager import PortfolioManager
 
 
 @dataclass
@@ -34,8 +36,11 @@ class ContextSchema:
   portfolio_llm: BaseChatModel
   # portfolio tools
   portfolio_tools: List[BaseTool]
+  # market manager
+  market_manager: MarketManager
 
-  def __init__(self, article_collection: Chroma, llm: BaseChatModel, portfolio_manager: PortfolioManager):
+  def __init__(self, article_collection: Chroma, llm: BaseChatModel, portfolio_manager: PortfolioManager, 
+               market_manager: MarketManager):
     self.article_collection = article_collection
     self.llm = llm
     self.financial_faq_tools = [search_finance_articles]
@@ -44,3 +49,4 @@ class ContextSchema:
     self.portfolio_tools = [get_time_series_daily, get_global_quote, get_treasury_yield,
                             get_ticker_overview, get_portfolio_summary]
     self.portfolio_llm = llm.bind_tools(self.portfolio_tools)
+    self.market_manager = market_manager

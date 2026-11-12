@@ -18,6 +18,7 @@ from agents.state import (
   PORTFOLIO_ANALYSIS,
   FinLitState
 )
+from tools.market_manager import MarketManager
 from tools.portfolio_manager import PortfolioManager
 
 FINANCE_FAQ_NODE = "finance_faq_node"
@@ -27,10 +28,11 @@ PORTFOLIO_AGENT_TOOL_NODE = "portfolio_agent_tool_node"
 ROUTER_NODE = "router_node"
 
 
-def build_graph(finance_article_collection: Chroma, llm: BaseChatModel, portfolio_manager: PortfolioManager):
+def build_graph(finance_article_collection: Chroma, llm: BaseChatModel, portfolio_manager: PortfolioManager,
+                market_manager: MarketManager):
   """defines and builds the FinLit AI LangGraph"""
   context = ContextSchema(article_collection=finance_article_collection, llm=llm,
-                          portfolio_manager=portfolio_manager)
+                          portfolio_manager=portfolio_manager, market_manager=market_manager)
   builder = StateGraph(FinLitState)
 
   # create tool nodes

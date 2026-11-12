@@ -13,6 +13,7 @@ FINANCE_ARTICLE_FILES_CONFIG = "finance_article_files"
 GRAPH_ACTIVITY_CONFIG = "graph_activity_config"
 FINANCE_ARTICLES_CONFIG = "finance_articles"
 PORTFOLIO_MANAGER_CONFIG = "portfolio_manager"
+MARKET_MANAGER_CONFIG = "market_manager"
 REQUIRED_CONFIG = [
   MODEL_CONFIG,
   MODEL_PROVIDER_CONFIG,

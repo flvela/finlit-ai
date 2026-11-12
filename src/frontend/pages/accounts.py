@@ -5,10 +5,12 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
+from frontend.components.common import create_news_feed_df_container
 from frontend.components.ui_config import configure_application
 from frontend.utils.common import (
   CONFIG_ERROR_MESSAGE,
   FINLIT_ASSISTANT_CONFIG,
+  MARKET_MANAGER_CONFIG,
   PORTFOLIO_ANALYSIS_RESULT_CONFIG,
   PORTFOLIO_MANAGER_CONFIG,
   config_missing_message,
@@ -60,25 +62,16 @@ CHANGE_KEY = "09. change"
 CHANGE_PERCENT_KEY = "10. change percent"
 
 # overview response keys
-ASSET_TYPE_KEY = "AssetType"
-INDUSTRY_KEY = "Industry"
-SECTOR_KEY = "Sector"
-EXCHANGE_KEY = "Exchange"
-CURRENCY_KEY = "Currency"
-ADDRESS_KEY = "Address"
-DESCRIPTION_KEY = "Description"
+ASSET_TYPE_KEY = "quoteType"
+INDUSTRY_KEY = "industry"
+SECTOR_KEY = "sector"
+EXCHANGE_KEY = "exchange"
+CURRENCY_KEY = "currency"
+CITY_KEY = "city"
+STATE_KEY = "state"
+COUNTRY_KEY = "country"
+DESCRIPTION_KEY = "longBusinessSummary"
 
-# news sentiment response keys
-FEED_KEY = "feed"
-NEWS_PAGINATION_KEY = "news_pagination"
-TITLE_KEY = "title"
-URL_KEY = "url"
-TIME_PUBLISHED_KEY = "time_published"
-AUTHORS_KEY = "authors"
-BANNER_IMAGE_KEY = "banner_image"
-SOURCE_DOMAIN_KEY = "source_domain"
-TICKER_SENTIMENT_KEY = "ticker_sentiment"
-OVERALL_SENTIMENT_LABEL_KEY = "overall_sentiment_label"
 
 ADD_PURCHASE_BUTTON = ":material/add: Purchase"
 UPLOAD_CSV_BUTTON = ":material/upload_file: CSV"
@@ -167,66 +160,37 @@ def create_quote_container(quote_data):
     st.table(quote_table_data, border="horizontal")
 
 
-def create_overview_container(overview_data):
+def create_overview_container(ticker):
   """creates the overview container"""
+  market_manager = st.session_state[MARKET_MANAGER_CONFIG]
+  ticker_info = market_manager.get_ticker_info(ticker)
   st.markdown("**Overview**")
-  if ASSET_TYPE_KEY not in overview_data:
+  if ASSET_TYPE_KEY not in ticker_info:
     st.warning("Overview data not available")
-    st.warning(overview_data)
+    st.warning(ticker_info)
   else:
+    location = f"{ticker_info[CITY_KEY]}, {ticker_info[STATE_KEY]}, {ticker_info[COUNTRY_KEY]}"
     col_data = [
-      ("Asset Type", overview_data[ASSET_TYPE_KEY]),
-      ("Industry", overview_data[INDUSTRY_KEY]),
-      ("Sector", overview_data[SECTOR_KEY]),
-      ("Exchange", overview_data[EXCHANGE_KEY]),
-      ("Currency", overview_data[CURRENCY_KEY]),
-      ("Location", overview_data[ADDRESS_KEY])
+      ("Asset Type", ticker_info[ASSET_TYPE_KEY]),
+      ("Industry", ticker_info[INDUSTRY_KEY]),
+      ("Sector", ticker_info[SECTOR_KEY]),
+      ("Exchange", ticker_info[EXCHANGE_KEY]),
+      ("Currency", ticker_info[CURRENCY_KEY]),
+      ("Location", location)
     ]
     st.table(col_data, border="horizontal")
-    st.write(overview_data[DESCRIPTION_KEY])
+    st.write(ticker_info[DESCRIPTION_KEY])
 
-
-def create_news_feed_container(news_sentiment_data, ticker):
+def create_news_feed_container(ticker):
   """creates the news feed container"""
   st.markdown("**News**")
-  if FEED_KEY in news_sentiment_data:
-    news_feed_df = pd.DataFrame(news_sentiment_data[FEED_KEY])
-    rows_per_page = 5
-    total_pages = (len(news_feed_df) + rows_per_page - 1)//rows_per_page
-    news_container = st.container(width="stretch")
-    with st.container(horizontal_alignment="right", width="stretch"):
-      page = st.pagination(key=f"{NEWS_PAGINATION_KEY}_{ticker}", num_pages=total_pages)
-
-    start_idx = (page - 1) * rows_per_page
-    end_idx = start_idx + rows_per_page
-    create_news_page_container(news_container, news_feed_df.iloc[start_idx: end_idx])
+  market_manager = st.session_state[MARKET_MANAGER_CONFIG]
+  news = market_manager.search_news(ticker, 100)
+  if news is not None and len(news) > 0:
+    create_news_feed_df_container(pd.DataFrame(news), news_per_page=5, unique_key=ticker)
   else:
-    st.warning("News Sentiment data not available")
-    st.warning(news_sentiment_data)
-
-
-def format_sentiment(sentiment):
-  """formats the sentiment with a markdown badge"""
-  sentiment_dict = {
-    "Bearish": ":red-badge[Bearish]",
-    "Somewhat-Bearish": ":yellow-badge[Somewhat-Bearish]",
-    "Neutral": ":gray-badge[Neutral]",
-    "Somewhat-Bullish": ":blue-badge[Somewhat_Bullish]",
-    "Bullish": ":green-badge[Bullish]"
-  }
-  return sentiment_dict[sentiment]
-
-
-def create_news_page_container(news_slot_container, news_sentiment_df):
-  """creates the container to display news page data"""
-  table_data = []
-  for _, row in news_sentiment_df.iterrows():
-    link_markdown = f"[{row[TITLE_KEY]}]({row[URL_KEY]})"
-    published_date = datetime.strptime(row[TIME_PUBLISHED_KEY], "%Y%m%dT%H%M%S").strftime("%b %d, %Y %H:%M")
-    source_date = f"\n\n:gray[{row[SOURCE_DOMAIN_KEY]}]\n\n{published_date}"
-    sentiment = f"{format_sentiment(row[OVERALL_SENTIMENT_LABEL_KEY])}"
-    table_data.append((link_markdown, source_date, sentiment))
-  news_slot_container.table(table_data, border="horizontal", width="stretch")
+    st.warning("News data not available")
+    st.warning(news)
 
 
 def create_chart_container(time_series_daily, quote_data):
@@ -265,9 +229,9 @@ def show_portfolio_item_details_expander(portfolio_manager, portfolio_positions_
     create_chart_container(portfolio_manager.get_time_series_daily(ticker), global_qoute)
   overview_col, news_sentiment_col = research.columns(2, border=True)
   with overview_col:
-    create_overview_container(portfolio_manager.get_overview(ticker))
+    create_overview_container(ticker)
   with news_sentiment_col:
-    create_news_feed_container(portfolio_manager.get_news_sentiment(ticker), ticker)
+    create_news_feed_container(ticker)
 
 
 def show_portfolio_tab():
