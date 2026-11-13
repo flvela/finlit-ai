@@ -11,6 +11,7 @@ from frontend.utils.common import (
   EMBEDDINGS_MODEL_PROVIDER_CONFIG,
   FINANCE_ARTICLE_FILES,
   FINANCE_ARTICLE_FILES_CONFIG,
+  MARKET_MANAGER_CONFIG,
   MODEL_API_KEY_CONFIG,
   MODEL_CONFIG,
   MODEL_PROVIDER_CONFIG,
@@ -22,6 +23,7 @@ from frontend.utils.common import (
 )
 from tools.config import Config
 from tools.articles import load_article_documents
+from tools.market_manager import MarketManager
 from tools.portfolio_manager import PortfolioManager
 
 # model provider UI options for selectbox
@@ -212,6 +214,9 @@ def initialize_assisstant():
   if PORTFOLIO_MANAGER_CONFIG not in st.session_state:
     st.session_state[PORTFOLIO_MANAGER_CONFIG] = PortfolioManager()
 
+  if MARKET_MANAGER_CONFIG not in st.session_state:
+    st.session_state[MARKET_MANAGER_CONFIG] = MarketManager()
+
   st.info(st.session_state)
   app_config = Config(
     model_provider=MODEL_PROVIDER_LABEL_TO_CONFIG[st.session_state[MODEL_PROVIDER_CONFIG]],
@@ -222,4 +227,5 @@ def initialize_assisstant():
     embeddings_model_api_key=st.session_state[EMBEDDINGS_MODEL_API_KEY_CONFIG])
 
   st.session_state[FINLIT_ASSISTANT_CONFIG] = FinLitAssistant(financial_articles=articles, config=app_config,
-                                                              portfolio_manager=st.session_state[PORTFOLIO_MANAGER_CONFIG])
+                                                              portfolio_manager=st.session_state[PORTFOLIO_MANAGER_CONFIG],
+                                                              market_manager=st.session_state[MARKET_MANAGER_CONFIG])

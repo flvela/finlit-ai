@@ -16,6 +16,7 @@ from agents.graph import (
 from tools.articles import ARTICLE_COLLECTION_NAME, DEMO_ARTICLES, load_article_documents
 from tools.config import Config
 from tools.logger import get_logger
+from tools.market_manager import MarketManager
 from tools.portfolio_manager import PortfolioManager
 from tools.vector_store import PERSIST_DIRECTORY, VectorStore
 
@@ -57,7 +58,10 @@ def test_build_graph():
   config = Config()
   llm = config.get_llm()
   portfolio_manager = PortfolioManager()
-  graph, context = build_graph(finance_article_collection=article_collection, llm=llm, portfolio_manager=portfolio_manager)
+  graph, context = build_graph(finance_article_collection=article_collection,
+                               llm=llm,
+                               portfolio_manager=portfolio_manager,
+                               market_manager=MarketManager())
   try:
     graph_nodes = graph.get_graph().nodes.keys()
     assert list(graph.get_graph().nodes.keys()) == expected_nodes, f"Nodes {graph_nodes}, Expected Nodes {expected_nodes}"

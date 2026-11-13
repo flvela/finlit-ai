@@ -12,6 +12,7 @@ from tools.alpha_vantage_client import (
   TREASURY_YIELD_FUNCTION
 )
 from tools.config import Config
+from tools.market_manager import MarketManager
 from tools.portfolio_manager import PortfolioManager
 
 URL_KEY = "URL"
@@ -40,7 +41,7 @@ def init_test_runtime():
   """test runtime initialization for LangGraph agents"""
   config = Config()
   context = ContextSchema(article_collection=None, llm=config.get_llm(),
-                          portfolio_manager=PortfolioManager())
+                          portfolio_manager=PortfolioManager(), market_manager=MarketManager())
   return Runtime(context=context)
 
 
@@ -60,3 +61,9 @@ def assert_agent_node_output_state(result: FinLitState, has_tool_calls: bool):
     assert len(tool_calls) > 0
   else:
     assert len(result[MESSAGES_FIELD]) > 0
+
+
+def write_to_file(file_name, value):
+  """writes to a file based on file name and value"""
+  with open(file_name, "w", encoding="utf-8") as file:
+    file.write(value)

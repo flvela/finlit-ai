@@ -12,6 +12,7 @@ from agents.state import OUTPUT_FIELD
 from tools.config import Config
 from tools.articles import ARTICLE_COLLECTION_NAME
 from tools.logger import get_logger
+from tools.market_manager import MarketManager
 from tools.portfolio_manager import PortfolioManager
 from tools.vector_store import PERSIST_DIRECTORY, VectorStore
 
@@ -32,6 +33,7 @@ class FinLitAssistant:
   def __init__(self,
                financial_articles: List[Document],
                portfolio_manager: PortfolioManager,
+               market_manager: MarketManager,
                config: Config = Config()):
     """Constructor for FinLitAssistant"""
 
@@ -39,7 +41,7 @@ class FinLitAssistant:
     self.vector_store = VectorStore(persist_directory=PERSIST_DIRECTORY, collection_name=ARTICLE_COLLECTION_NAME)
     article_collection = self.vector_store.get_create_collection(financial_articles, config=config)
     self.graph, self.context = build_graph(finance_article_collection=article_collection, llm=config.get_llm(),
-                                           portfolio_manager=portfolio_manager)
+                                           portfolio_manager=portfolio_manager, market_manager=market_manager)
     self.thread_id = str(uuid.uuid4())
     self.is_interrupted = False
 

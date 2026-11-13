@@ -5,7 +5,7 @@ import shutil
 
 import pandas as pd
 import pytest
-from testutils.common import MOCK_DATA_KEY, TEST_URL_AND_MOCK_MAPPING, URL_KEY, read_json_file
+from testutils.common import MOCK_DATA_KEY, TEST_URL_AND_MOCK_MAPPING, URL_KEY, read_json_file, write_to_file
 from tools.alpha_vantage_client import COMPANY_LOGO_FUNCTION, TREASURY_YIELD_FUNCTION, AlphaVantageClient
 from tools.portfolio_manager import (
   COST_BASIS_COLUMN,
@@ -41,12 +41,6 @@ test_data = [
   (True, 4)
 ]
 TEST_ALPHA_VANTAGE_KEY = "demo"
-
-
-def write_to_file(file_name, value):
-  """writes to a file based on file name and value"""
-  with open(file_name, "w", encoding="utf-8") as file:
-    file.write(value)
 
 
 @pytest.mark.parametrize("file_exists, expected_size", test_data)
