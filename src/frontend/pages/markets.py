@@ -57,7 +57,8 @@ def show_index_col(idx: str, container: DeltaGenerator):
   ticker_price_change_percent = ticker_info[Y_FINANCE_TICKER_INFO_REGULAR_MARKET_CHANGE_PERCENT]
   ticker_market_date = datetime.fromtimestamp(ticker_info[Y_FINANCE_TICKER_INFO_REGULAR_MARKET_TIME])
   delta_label = f"{ticker_price_change:+.2f} ({ticker_price_change_percent:+.2f}%)"
-  date_label = f"Last updated: {ticker_market_date.strftime("%Y-%m-%d %H:%M:%S")}"
+  formatted_date = ticker_market_date.strftime("%Y-%m-%d %H:%M:%S")
+  date_label = f"Last updated: {formatted_date}"
   container.metric(label=ticker_name, value=ticker_price, delta=delta_label)
   container.write(date_label)
 
