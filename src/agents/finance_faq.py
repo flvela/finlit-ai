@@ -35,7 +35,7 @@ def finance_faq_node(state: FinLitState, runtime: Runtime[ContextSchema]) -> Fin
   system_message = SystemMessage(content=FINANCE_FAQ_INSTRUCTIONS)
   human_message = HumanMessage(content=state[USER_INPUT_FIELD])
   messages = [system_message] + history + [human_message]
-  result = runtime.context.financial_faq_llm.invoke(messages)
+  result = runtime.context.llms.financial_faq_llm.invoke(messages)
 
   logger.info("finance_faq_node user input %s, llm response %s", human_message.content, result.content)
   return get_output_state(state, result, messages)

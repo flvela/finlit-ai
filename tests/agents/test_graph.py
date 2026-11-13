@@ -7,6 +7,8 @@ from agents import state
 from agents.graph import (
   FINANCE_FAQ_NODE,
   FINANCE_FAQ_TOOL_NODE,
+  MARKET_ANALISYS_AGENT_NODE,
+  MARKET_ANALISYS_AGENT_TOOL_NODE,
   PORTFOLIO_AGENT_NODE,
   PORTFOLIO_AGENT_TOOL_NODE,
   ROUTER_NODE,
@@ -26,14 +28,16 @@ logger = get_logger(__name__)
 def test_build_graph():
   """unit test for build_graph"""
   expected_nodes = [START, ROUTER_NODE, FINANCE_FAQ_NODE, FINANCE_FAQ_TOOL_NODE,
-                    PORTFOLIO_AGENT_NODE, PORTFOLIO_AGENT_TOOL_NODE, END]
+                    PORTFOLIO_AGENT_NODE, PORTFOLIO_AGENT_TOOL_NODE,
+                    MARKET_ANALISYS_AGENT_NODE, MARKET_ANALISYS_AGENT_TOOL_NODE, END]
   expected_edges = {
     START: {
       ROUTER_NODE: (False, None)
     },
     ROUTER_NODE: {
       FINANCE_FAQ_NODE: (True, state.FINANCE_FAQ),
-      PORTFOLIO_AGENT_NODE: (True, state.PORTFOLIO_ANALYSIS)
+      PORTFOLIO_AGENT_NODE: (True, state.PORTFOLIO_ANALYSIS),
+      MARKET_ANALISYS_AGENT_NODE: (True, state.MARKET_ANALYSIS),
     },
     FINANCE_FAQ_NODE: {
       FINANCE_FAQ_TOOL_NODE: (True, state.FINANCE_FAQ_TOOLS),
@@ -48,6 +52,13 @@ def test_build_graph():
     },
     PORTFOLIO_AGENT_TOOL_NODE: {
       PORTFOLIO_AGENT_NODE: (False, None)
+    },
+    MARKET_ANALISYS_AGENT_NODE: {
+      MARKET_ANALISYS_AGENT_TOOL_NODE: (True, state.MARKET_ANALYSIS_TOOLS),
+      END: (True, state.GRAPH_END)
+    },
+    MARKET_ANALISYS_AGENT_TOOL_NODE: {
+      MARKET_ANALISYS_AGENT_NODE: (False, None)
     }
   }
 
@@ -75,7 +86,7 @@ def test_build_graph():
       assert attributes[0] == edge.conditional
       assert attributes[1] == edge.data
     assert context.article_collection == article_collection
-    assert context.llm == llm
+    assert context.llms.llm == llm
   finally:
     # cleanup vector store if test passes or fails
     vector_store.delete_collection()

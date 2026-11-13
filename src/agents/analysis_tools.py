@@ -89,3 +89,45 @@ def get_portfolio_summary(runtime: ToolRuntime):
     runtime (ToolRuntime): the runtime environment for the tool
   """
   return json.dumps(runtime.context.portfolio_manager.get_portfolio().to_json())
+
+
+@tool("get_us_market_indices",
+      description="get the us market indices S&P500, NASDAQ, Dow Jones")
+def get_us_market_indices(runtime: ToolRuntime):
+  """
+  gets the US market indices S&P500, NASDAQ, Dow Jones
+
+  Args:
+    runtime (ToolRuntime): the runtime environment for the tool
+  """
+  return json.dumps(runtime.context.market_manager.get_us_market_indices_df().to_json())
+
+
+@tool("search_finance_market_news",
+      description="searches financial market news by query term and article count")
+def search_finance_market_news(query: str, article_count: int, runtime: ToolRuntime):
+  """
+  search finance market news articles
+
+  Args:
+    query (str): the search query to use
+    article_count (int): the number of articles to return
+    runtime (ToolRuntime): the runtime environment for the tool
+  """
+  return json.dumps(runtime.context.market_manager.search_news(query, article_count))
+
+
+@tool("get_us_finance_sector_data",
+      description="get sector data such as overview, name, research, performance, top companies, ETFs and mutual funds")
+def get_us_finance_sector_data(sector_name: str, runtime: ToolRuntime):
+  """
+  get sector data such as overview, name, research, performance, top companies, top etfs and top mutual funds
+  the different sector names are: "basic-materials", "communication-services", "consumer-cyclical",
+  "consumer-defensive", "energy", "financial-services", "healthcare", "industrials", "real-estate", "technology",
+  "utilities"
+
+  Args:
+    sector_name (str): name of the financial sector (ie. basic-materials, communication-services, etc...)
+    runtime (ToolRuntime): the runtime environment for the tool
+  """
+  return json.dumps(runtime.context.market_manager.get_sector(sector_name))
