@@ -26,7 +26,7 @@ def router_node(state: FinLitState, runtime: Runtime[ContextSchema]) -> FinLitSt
     *history,
     HumanMessage(content=state[USER_INPUT_FIELD])
   ]
-  result = runtime.context.llm.invoke(messages)
+  result = runtime.context.llms.llm.invoke(messages)
   return {ROUTE_FIELD: result.content, MESSAGES_FIELD: [HumanMessage(content=state[USER_INPUT_FIELD])]}
 
 

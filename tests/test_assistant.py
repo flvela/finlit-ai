@@ -10,7 +10,8 @@ from tools.portfolio_manager import PortfolioManager
 test_data = [
   # user finance faq agent test
   ("what is the difference between RSU and ESPP", ["ESPP", "RSU"]),
-  ("how many IBM shares do I own", ["IBM"])
+  ("how many IBM shares do I own", ["IBM"]),
+  ("how are US financial markets moving today", ["S&P 500", "NASDAQ", "Dow Jones", "10-Year US Treasury", "Brent Crude"])
 ]
 
 logger = get_logger(__name__)

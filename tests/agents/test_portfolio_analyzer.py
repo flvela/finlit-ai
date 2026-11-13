@@ -1,4 +1,4 @@
-"""Unit tests for Finance FAQ Agent"""
+"""Unit tests for Portfolio Analyzer Agent"""
 import pytest
 
 from langchain.messages import AIMessage, ToolCall

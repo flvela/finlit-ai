@@ -48,7 +48,7 @@ def portfolio_agent_node(state: FinLitState, runtime: Runtime[ContextSchema]) ->
   system_message = SystemMessage(content=PORTFOLIO_AGENT_INSTRUCTIONS)
   human_message = HumanMessage(content=state[USER_INPUT_FIELD])
   messages = [system_message] + history + [human_message]
-  result = runtime.context.portfolio_llm.invoke(messages)
+  result = runtime.context.llms.portfolio_llm.invoke(messages)
 
   logger.info("user input %s, llm response %s", human_message.content, result.content)
 
