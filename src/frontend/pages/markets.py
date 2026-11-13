@@ -73,7 +73,7 @@ def show_markets_container():
     show_index_col(NASDAQ_TICKER, nasdaq_col)
     show_index_col(SP500_TICKER, sp_500_col)
     num_days_to_show = 30
-    end_idx =  len(us_market_indices_df)
+    end_idx = len(us_market_indices_df)
     start_idx = end_idx - num_days_to_show
 
     chart = (
@@ -91,11 +91,13 @@ def show_markets_container():
     )
     st.altair_chart(chart)
 
+
 def show_tbill_and_oil_container():
   """show performance of 10-year US treasury bill and brent crude oil"""
   t_bill_col, oil_col = st.columns(2, border=True)
   show_index_col(TREASURY_YIELD_TICKER, t_bill_col)
   show_index_col(BRENT_CRUDE_TICKER, oil_col)
+
 
 def show_news_container():
   """Shows the market news container"""
@@ -111,6 +113,7 @@ def show_news_container():
             .reset_index())
     create_news_feed_df_container(pd.DataFrame(news), news_per_page=5, unique_key="us_market")
 
+
 def show_sector_performance(sector_name):
   """show the sector performance"""
   market_manager = st.session_state[MARKET_MANAGER_CONFIG]
@@ -119,9 +122,10 @@ def show_sector_performance(sector_name):
   name_col.write(ticker_info[Y_FINANCE_TICKER_INFO_DISPLAY_NAME])
   ticker_price_change_percent = ticker_info[Y_FINANCE_TICKER_INFO_REGULAR_MARKET_CHANGE_PERCENT]
   color = "green" if ticker_price_change_percent > 0 else "red"
-  icon = "arrow_upward"  if ticker_price_change_percent > 0 else "arrow_downward"
+  icon = "arrow_upward" if ticker_price_change_percent > 0 else "arrow_downward"
   with change_col:
     st.badge(f"{ticker_price_change_percent:.2f}%", icon=f":material/{icon}:", color=color)
+
 
 def show_sector_information_container():
   """Shows the sector container for US stocks"""
@@ -129,6 +133,7 @@ def show_sector_information_container():
     st.write(US_SECTOR_PERFORMANCE_LABEL)
     for sector in Y_FINANCE_SECTORS:
       show_sector_performance(sector)
+
 
 def markets_page():
   """displays the account page"""
@@ -146,5 +151,6 @@ def markets_page():
     if CONFIG_ERROR_MESSAGE in st.session_state:
       st.error(st.session_state[CONFIG_ERROR_MESSAGE])
     st.warning(f"Please configure your application in sidebar. {config_missing_message()}")
+
 
 markets_page()

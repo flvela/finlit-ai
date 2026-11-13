@@ -10,6 +10,7 @@ from tools.portfolio_manager import TREASURY_DATA_KEY, TREASURY_DATE_COLUMN
 
 logger = get_logger(__name__)
 
+
 @tool("get_time_series_daily",
       description="returns the daily OHLCV history (Open, High, Low, Close, Value) for a given ticker")
 def get_time_series_daily(ticker: str, runtime: ToolRuntime):

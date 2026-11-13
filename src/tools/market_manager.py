@@ -17,15 +17,15 @@ Y_FINANCE_DIVIDENDS_COLUMN = "Dividends"
 Y_FINANCE_STOCK_SPLITS_COLUMN = "Stock Splits"
 Y_FINANCE_PERCENT_CHANGE_COLUMN = "Percent_Change"
 Y_FINANCE_TICKER_NAME_COLUMN = "Name"
-Y_FINANCE_INDICES_DF_FIELDS = [Y_FINANCE_TICKER_COLUMN, Y_FINANCE_DATE_COLUMN,Y_FINANCE_OPEN_COLUMN,
+Y_FINANCE_INDICES_DF_FIELDS = [Y_FINANCE_TICKER_COLUMN, Y_FINANCE_DATE_COLUMN, Y_FINANCE_OPEN_COLUMN,
                                Y_FINANCE_HIGH_COLUMN, Y_FINANCE_LOW_COLUMN, Y_FINANCE_CLOSE_COLUMN,
                                Y_FINANCE_VOLUMNE_COLUMN, Y_FINANCE_DIVIDENDS_COLUMN, Y_FINANCE_STOCK_SPLITS_COLUMN,
                                Y_FINANCE_PERCENT_CHANGE_COLUMN]
 
-Y_FINANCE_TICKER_INFO_REGULAR_MARKET_CHANGE="regularMarketChange"
-Y_FINANCE_TICKER_INFO_REGULAR_MARKET_CHANGE_PERCENT="regularMarketChangePercent"
-Y_FINANCE_TICKER_INFO_REGULAR_MARKET_PRICE="regularMarketPrice"
-Y_FINANCE_TICKER_INFO_REGULAR_MARKET_TIME="regularMarketTime"
+Y_FINANCE_TICKER_INFO_REGULAR_MARKET_CHANGE = "regularMarketChange"
+Y_FINANCE_TICKER_INFO_REGULAR_MARKET_CHANGE_PERCENT = "regularMarketChangePercent"
+Y_FINANCE_TICKER_INFO_REGULAR_MARKET_PRICE = "regularMarketPrice"
+Y_FINANCE_TICKER_INFO_REGULAR_MARKET_TIME = "regularMarketTime"
 Y_FINANCE_TICKER_INFO_SHORT_NAME = "shortName"
 Y_FINANCE_TICKER_INFO_DISPLAY_NAME = "displayName"
 Y_FINANCE_TICKER_INFO_FIELDS = [
@@ -51,15 +51,17 @@ Y_FINANCE_SECTORS = [
 ]
 
 logger = get_logger(__name__)
+
+
 @dataclass
 class MarketManager:
   """market manager class for displaying market indices, futures, market movers and top news"""
 
   def get_us_market_indices_df(self):
     """get the us market indices S&P500, NASDAQ, Dow Jones"""
-    #^GSPC - S&P 500, ^DJI - Dow Jones, ^IXIC Nasdaq Composite
+    # ^GSPC - S&P 500, ^DJI - Dow Jones, ^IXIC Nasdaq Composite
     time_series_df = pd.DataFrame()
-    for ticker in ["^GSPC","^DJI", "^IXIC",]:
+    for ticker in ["^GSPC", "^DJI", "^IXIC"]:
       idx = yf.Ticker(ticker=ticker)
       temp_df = idx.history(period="1y", interval="1d")
       temp_df[Y_FINANCE_TICKER_COLUMN] = ticker

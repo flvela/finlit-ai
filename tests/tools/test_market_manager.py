@@ -9,6 +9,7 @@ from tools.market_manager import Y_FINANCE_INDICES_DF_FIELDS, Y_FINANCE_TICKER_I
 TEST_NEW_FILE = "data/test.json"
 TEST_TICKER = "IBM"
 
+
 def test_market_manager_get_us_market_indices_df():
   """tests the MarketManager get_us_market_indices_df"""
   market_manager = MarketManager()
@@ -16,6 +17,7 @@ def test_market_manager_get_us_market_indices_df():
   # 251 entries per ticker and 3 tickers () = 753
   assert len(indices_summary_df) == 753
   assert collections.Counter(indices_summary_df.columns.to_list()) == collections.Counter(Y_FINANCE_INDICES_DF_FIELDS)
+
 
 def test_market_manager_ticker_info():
   """tests the MarketManager get_ticker_info"""

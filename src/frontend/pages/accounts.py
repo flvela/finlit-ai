@@ -181,6 +181,7 @@ def create_overview_container(ticker):
     st.table(col_data, border="horizontal")
     st.write(ticker_info[DESCRIPTION_KEY])
 
+
 def create_news_feed_container(ticker):
   """creates the news feed container"""
   st.markdown("**News**")

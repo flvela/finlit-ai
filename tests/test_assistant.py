@@ -3,6 +3,7 @@ import pytest
 from assistant import FinLitAssistant
 from tools.articles import DEMO_ARTICLES, load_article_documents
 from tools.logger import get_logger
+from tools.market_manager import MarketManager
 from tools.portfolio_manager import PortfolioManager
 
 
@@ -20,7 +21,8 @@ def init_assistant():
   financial_articles = load_article_documents(DEMO_ARTICLES[0])
   financial_articles.extend(load_article_documents(DEMO_ARTICLES[1]))
   portfolio_manager = PortfolioManager()
-  return FinLitAssistant(financial_articles=financial_articles, portfolio_manager=portfolio_manager)
+  return FinLitAssistant(financial_articles=financial_articles, portfolio_manager=portfolio_manager,
+                         market_manager=MarketManager())
 
 
 @pytest.mark.parametrize("query, expected_answer_strings", test_data)

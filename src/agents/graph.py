@@ -36,8 +36,8 @@ def build_graph(finance_article_collection: Chroma, llm: BaseChatModel, portfoli
   builder = StateGraph(FinLitState)
 
   # create tool nodes
-  finance_faq_tool_node = ToolNode(tools=context.financial_faq_tools, messages_key=MESSAGES_FIELD)
-  portfolio_agent_tool_node = ToolNode(tools=context.portfolio_tools, messages_key=MESSAGES_FIELD)
+  finance_faq_tool_node = ToolNode(tools=context.llm_tools.financial_faq_tools, messages_key=MESSAGES_FIELD)
+  portfolio_agent_tool_node = ToolNode(tools=context.llm_tools.portfolio_tools, messages_key=MESSAGES_FIELD)
 
   # add nodes
   builder.add_node(ROUTER_NODE, router_node)
