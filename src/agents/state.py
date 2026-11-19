@@ -19,6 +19,7 @@ ROUTE_FIELD = "route"
 # graph states for conditional edges
 FINANCE_FAQ_TOOLS = "finance_faq_tools"
 PORTFOLIO_AGENT_TOOLS = "portfolio_agent_tools"
+MARKET_ANALYSIS_TOOLS = "market_analysis_tools"
 GRAPH_END = "end"
 
 

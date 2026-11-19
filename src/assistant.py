@@ -1,6 +1,7 @@
 """Defines the FinLit AI assistant"""
 import shutil
 from typing import List
+import time
 import uuid
 
 from langchain_core.documents import Document
@@ -38,8 +39,10 @@ class FinLitAssistant:
     """Constructor for FinLitAssistant"""
 
     self.financial_articles = financial_articles
+    start = time.perf_counter()
     self.vector_store = VectorStore(persist_directory=PERSIST_DIRECTORY, collection_name=ARTICLE_COLLECTION_NAME)
     article_collection = self.vector_store.get_create_collection(financial_articles, config=config)
+    logger.info("initialized vector store in %.2f seconds", time.perf_counter() - start)
     self.graph, self.context = build_graph(finance_article_collection=article_collection, llm=config.get_llm(),
                                            portfolio_manager=portfolio_manager, market_manager=market_manager)
     self.thread_id = str(uuid.uuid4())
