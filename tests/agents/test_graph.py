@@ -64,12 +64,15 @@ def test_build_graph():
 
   articles = load_article_documents(DEMO_ARTICLES[0])
   articles.extend(load_article_documents(DEMO_ARTICLES[1]))
-  vector_store = VectorStore(persist_directory=PERSIST_DIRECTORY, collection_name=ARTICLE_COLLECTION_NAME)
-  article_collection = vector_store.get_create_collection(articles)
   config = Config()
+
+  vector_store = VectorStore(persist_directory=PERSIST_DIRECTORY,
+                             collection_name=ARTICLE_COLLECTION_NAME,
+                             embedding_function=config.get_langchain_embeddings())
+  vector_store.add_documents_if_empty(articles)
   llm = config.get_llm()
   portfolio_manager = PortfolioManager()
-  graph, context = build_graph(finance_article_collection=article_collection,
+  graph, context = build_graph(finance_article_collection=vector_store,
                                llm=llm,
                                portfolio_manager=portfolio_manager,
                                market_manager=MarketManager())
@@ -85,7 +88,7 @@ def test_build_graph():
       attributes = expected_edges[source_node][target_node]
       assert attributes[0] == edge.conditional
       assert attributes[1] == edge.data
-    assert context.article_collection == article_collection
+    assert context.article_collection == vector_store
     assert context.llms.llm == llm
   finally:
     # cleanup vector store if test passes or fails

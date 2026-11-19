@@ -1,6 +1,8 @@
 """UI config class definition"""
 from dataclasses import dataclass
+import time
 
+from langchain.embeddings import Embeddings
 import streamlit as st
 from assistant import FinLitAssistant
 from frontend.utils.common import (
@@ -10,21 +12,20 @@ from frontend.utils.common import (
   EMBEDDINGS_MODEL_CONFIG,
   EMBEDDINGS_MODEL_PROVIDER_CONFIG,
   FINANCE_ARTICLE_FILES,
-  FINANCE_ARTICLE_FILES_CONFIG,
-  MARKET_MANAGER_CONFIG,
   MODEL_API_KEY_CONFIG,
   MODEL_CONFIG,
   MODEL_PROVIDER_CONFIG,
-  FINLIT_ASSISTANT_CONFIG,
-  FINANCE_ARTICLES_CONFIG,
-  PORTFOLIO_MANAGER_CONFIG,
   config_missing_message,
   is_config_complete
 )
 from tools.config import Config
-from tools.articles import load_article_documents
+from tools.articles import ARTICLE_COLLECTION_NAME, load_article_documents
+from tools.logger import get_logger
 from tools.market_manager import MarketManager
 from tools.portfolio_manager import PortfolioManager
+from tools.vector_store import PERSIST_DIRECTORY, VectorStore
+
+logger = get_logger(__name__)
 
 # model provider UI options for selectbox
 MODEL_PROVIDER_LABELS = ["OpenAI", "Anthropic"]
@@ -116,7 +117,6 @@ class UIConfig:
 
   def show_config_sidebar(self):
     """displays the sidebar in the UI"""
-    st.session_state[FINANCE_ARTICLE_FILES_CONFIG] = FINANCE_ARTICLE_FILES
     with st.sidebar:
       self.model_provider = st.selectbox(
         "Model Provider", MODEL_PROVIDER_LABELS,
@@ -184,40 +184,61 @@ def configure_application():
   if is_config_complete():
     st.session_state[CONFIG_FAILED] = False
     with st.status("Initializing Assistant") as status:
-      initialize_assisstant()
+      get_assistant.clear()
+      get_assistant()
       status.update(label="Assistant Initialized", state="complete")
   else:
     st.session_state[CONFIG_FAILED] = True
 
 
-def load_finance_articles():
-  """loads the financial education articles used by the FinLit AI assistant"""
-  if FINANCE_ARTICLES_CONFIG not in st.session_state:
-    # only load finance articles once
-    try:
-      finance_articles = []
-      st.session_state[FINANCE_ARTICLE_FILES_CONFIG] = FINANCE_ARTICLE_FILES
-      for file in FINANCE_ARTICLE_FILES:
-        finance_articles.extend(load_article_documents(file))
-
-      st.session_state[FINANCE_ARTICLES_CONFIG] = finance_articles
-    except KeyError as e:
-      st.session_state[CONFIG_ERROR_MESSAGE] = f"Failed to load finance articles '{FINANCE_ARTICLE_FILES}'. KeyError: {str(e)}"
-      st.session_state[CONFIG_FAILED] = True
-      return None
-  return st.session_state[FINANCE_ARTICLES_CONFIG]
+@st.cache_resource(scope="session")
+def get_finance_articles():
+  """gets the financial education articles used by the FinLit AI assistant"""
+  finance_articles = []
+  for file in FINANCE_ARTICLE_FILES:
+    finance_articles.extend(load_article_documents(file))
+  return finance_articles
 
 
-def initialize_assisstant():
+@st.cache_resource(scope="session")
+def get_portfolio_manager() -> PortfolioManager:
+  """get the portfolio manager"""
+  return PortfolioManager()
+
+
+@st.cache_resource(scope="session")
+def get_market_manager() -> MarketManager:
+  """get the market manager"""
+  return MarketManager()
+
+
+@st.cache_resource(scope="session", on_release=lambda store: store.close())
+def get_vector_store(embedding_function: Embeddings) -> VectorStore:
+  """get the vectore store """
+  start = time.perf_counter()
+  articles = get_finance_articles()
+  logger.info("loaded finance articles in %.2f ms", (time.perf_counter() - start) * 1000)
+  vector_store = VectorStore(persist_directory=PERSIST_DIRECTORY,
+                             collection_name=ARTICLE_COLLECTION_NAME,
+                             embedding_function=embedding_function)
+  vector_store.add_documents_if_empty(documents=articles)
+  logger.info("initialized vector store in %.2f seconds", time.perf_counter() - start)
+  return vector_store
+
+
+@st.cache_resource(scope="session", show_time=True)
+def get_assistant() -> FinLitAssistant:
   """initializes the AI Assistant"""
-  articles = load_finance_articles()
-  if PORTFOLIO_MANAGER_CONFIG not in st.session_state:
-    st.session_state[PORTFOLIO_MANAGER_CONFIG] = PortfolioManager()
+  start = time.perf_counter()
 
-  if MARKET_MANAGER_CONFIG not in st.session_state:
-    st.session_state[MARKET_MANAGER_CONFIG] = MarketManager()
+  portfolio_start = time.perf_counter()
+  portfolio_manager = get_portfolio_manager()
+  logger.info("initialized portfolio manager in %.2f ms", (time.perf_counter() - portfolio_start) * 1000)
 
-  st.info(st.session_state)
+  market_manager_start = time.perf_counter()
+  market_manager = get_market_manager()
+  logger.info("initialized market manager in %.2f ms", (time.perf_counter() - market_manager_start) * 1000)
+
   app_config = Config(
     model_provider=MODEL_PROVIDER_LABEL_TO_CONFIG[st.session_state[MODEL_PROVIDER_CONFIG]],
     model_name=st.session_state[MODEL_CONFIG],
@@ -226,6 +247,11 @@ def initialize_assisstant():
     embeddings_model_name=st.session_state[EMBEDDINGS_MODEL_CONFIG],
     embeddings_model_api_key=st.session_state[EMBEDDINGS_MODEL_API_KEY_CONFIG])
 
-  st.session_state[FINLIT_ASSISTANT_CONFIG] = FinLitAssistant(financial_articles=articles, config=app_config,
-                                                              portfolio_manager=st.session_state[PORTFOLIO_MANAGER_CONFIG],
-                                                              market_manager=st.session_state[MARKET_MANAGER_CONFIG])
+  vector_store = get_vector_store(app_config.get_langchain_embeddings())
+
+  assistant = FinLitAssistant(config=app_config,
+                              portfolio_manager=portfolio_manager,
+                              market_manager=market_manager,
+                              vector_store=vector_store)
+  logger.info("finished initializaing assistant in %.3f s", time.perf_counter() - start)
+  return assistant

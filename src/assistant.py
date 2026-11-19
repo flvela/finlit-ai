@@ -1,21 +1,15 @@
 """Defines the FinLit AI assistant"""
-import shutil
-from typing import List
-import time
 import uuid
 
-from langchain_core.documents import Document
 from langgraph.graph.state import Command, CompiledStateGraph
 
-from agents.context_schema import ContextSchema
 from agents.graph import build_graph
 from agents.state import OUTPUT_FIELD
 from tools.config import Config
-from tools.articles import ARTICLE_COLLECTION_NAME
 from tools.logger import get_logger
 from tools.market_manager import MarketManager
 from tools.portfolio_manager import PortfolioManager
-from tools.vector_store import PERSIST_DIRECTORY, VectorStore
+from tools.vector_store import VectorStore
 
 logger = get_logger(__name__)
 
@@ -25,25 +19,16 @@ DEFAULT_ANSWER = "Sorry I could not process your request"
 class FinLitAssistant:
   """Finlit AI assistant. Defines asks and other AI functions"""
   graph: CompiledStateGraph
-  context: ContextSchema
-  vector_store: VectorStore
   thread_id: str
-  financial_articles: List[Document]
   is_interrupted: bool
 
   def __init__(self,
-               financial_articles: List[Document],
                portfolio_manager: PortfolioManager,
                market_manager: MarketManager,
+               vector_store: VectorStore,
                config: Config = Config()):
     """Constructor for FinLitAssistant"""
-
-    self.financial_articles = financial_articles
-    start = time.perf_counter()
-    self.vector_store = VectorStore(persist_directory=PERSIST_DIRECTORY, collection_name=ARTICLE_COLLECTION_NAME)
-    article_collection = self.vector_store.get_create_collection(financial_articles, config=config)
-    logger.info("initialized vector store in %.2f seconds", time.perf_counter() - start)
-    self.graph, self.context = build_graph(finance_article_collection=article_collection, llm=config.get_llm(),
+    self.graph, self.context = build_graph(finance_article_collection=vector_store, llm=config.get_llm(),
                                            portfolio_manager=portfolio_manager, market_manager=market_manager)
     self.thread_id = str(uuid.uuid4())
     self.is_interrupted = False
@@ -122,9 +107,3 @@ class FinLitAssistant:
     config = {"configurable": {"thread_id": self.thread_id}}
     snapshot = self.graph.get_state(config)
     return snapshot.values.get(OUTPUT_FIELD, DEFAULT_ANSWER)
-
-  def shutdown(self):
-    """Closes connection to vector store and cleans up data"""
-    self.vector_store.delete_collection()
-    self.vector_store.close()
-    shutil.rmtree(PERSIST_DIRECTORY)

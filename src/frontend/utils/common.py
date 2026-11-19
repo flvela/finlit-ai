@@ -8,12 +8,8 @@ MODEL_API_KEY_CONFIG = "model_api_key"
 EMBEDDINGS_MODEL_PROVIDER_CONFIG = "embeddings_model_provider"
 EMBEDDINGS_MODEL_API_KEY_CONFIG = "embeddings_model_api_key"
 EMBEDDINGS_MODEL_CONFIG = "embeddings_model"
-FINLIT_ASSISTANT_CONFIG = "finlit_assistant"
-FINANCE_ARTICLE_FILES_CONFIG = "finance_article_files"
 GRAPH_ACTIVITY_CONFIG = "graph_activity_config"
 FINANCE_ARTICLES_CONFIG = "finance_articles"
-PORTFOLIO_MANAGER_CONFIG = "portfolio_manager"
-MARKET_MANAGER_CONFIG = "market_manager"
 REQUIRED_CONFIG = [
   MODEL_CONFIG,
   MODEL_PROVIDER_CONFIG,

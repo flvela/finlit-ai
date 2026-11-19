@@ -4,13 +4,12 @@ import asyncio
 import streamlit as st
 from frontend.utils.common import (
   CONFIG_ERROR_MESSAGE,
-  FINLIT_ASSISTANT_CONFIG,
   GRAPH_ACTIVITY_CONFIG,
   config_missing_message,
   is_config_complete
 )
 from frontend.components.fin_lit_container import FinLitActivityContainer
-from frontend.components.ui_config import configure_application
+from frontend.components.ui_config import get_assistant
 
 # chat roles
 ASSISTANT_ROLE = "assistant"
@@ -27,7 +26,7 @@ def write_and_save_message(message: str, role: str, message_container):
 
 async def graph_stream_events(prompt: str):
   """Streams graph event status to the UI"""
-  assistant = st.session_state[FINLIT_ASSISTANT_CONFIG]
+  assistant = get_assistant()
   graph_activity = st.session_state[GRAPH_ACTIVITY_CONFIG]
 
   stream = await assistant.async_ask(prompt)
@@ -43,7 +42,7 @@ def async_chat_with_user(message_container):
     events_container: UI container to publish events
     state_container: UI container to publish state
   """
-  assistant = st.session_state[FINLIT_ASSISTANT_CONFIG]
+  assistant = get_assistant()
   graph_node_activity = st.session_state[GRAPH_ACTIVITY_CONFIG]
 
   if "messages" not in st.session_state:
@@ -80,8 +79,6 @@ def async_ai_assistant_page():
   st.header("Snack Stack AI Assistant", text_alignment="center")
 
   if is_config_complete():
-    if FINLIT_ASSISTANT_CONFIG not in st.session_state:
-      configure_application()
 
     col1, col2 = st.columns([2, 1])
     col1.subheader("Conversation")

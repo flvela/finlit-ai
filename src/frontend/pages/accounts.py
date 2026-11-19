@@ -6,13 +6,10 @@ import pandas as pd
 import altair as alt
 
 from frontend.components.common import create_news_feed_df_container
-from frontend.components.ui_config import configure_application
+from frontend.components.ui_config import get_assistant, get_market_manager, get_portfolio_manager
 from frontend.utils.common import (
   CONFIG_ERROR_MESSAGE,
-  FINLIT_ASSISTANT_CONFIG,
-  MARKET_MANAGER_CONFIG,
   PORTFOLIO_ANALYSIS_RESULT_CONFIG,
-  PORTFOLIO_MANAGER_CONFIG,
   config_missing_message,
   is_config_complete
 )
@@ -87,8 +84,7 @@ def add_purchase():
   purchase_amount = st.text_input(PURCHASE_AMOUNT_INPUT,
                                   validate=(PURCHASE_FLOAT_REGEX, "Amount should be of format 123.45"))
   if st.button(ADD_PURCHASE_BUTTON):
-    st.session_state[PORTFOLIO_MANAGER_CONFIG].add_purchase(ticker, purchase_date,
-                                                            float(purchase_price), float(purchase_amount))
+    get_portfolio_manager().add_purchase(ticker, purchase_date, float(purchase_price), float(purchase_amount))
     st.rerun()
 
 
@@ -97,13 +93,13 @@ def import_csv():
   """creates a dialog to import a csv file with an investment portfolio"""
   csv_file = st.file_uploader(PORTFOLIO_CSV_INPUT, type="csv")
   if csv_file:
-    st.session_state[PORTFOLIO_MANAGER_CONFIG].import_csv(csv_file)
+    get_portfolio_manager().import_csv(csv_file)
     st.rerun()
 
 
 def show_summary_tab():
   """show the summary tab"""
-  portfolio_manager = st.session_state[PORTFOLIO_MANAGER_CONFIG]
+  portfolio_manager = get_portfolio_manager()
   portfolio = portfolio_manager.get_portfolio()
   if len(portfolio) > 0:
     account_summary_container = st.container()
@@ -162,7 +158,7 @@ def create_quote_container(quote_data):
 
 def create_overview_container(ticker):
   """creates the overview container"""
-  market_manager = st.session_state[MARKET_MANAGER_CONFIG]
+  market_manager = get_market_manager()
   ticker_info = market_manager.get_ticker_info(ticker)
   st.markdown("**Overview**")
   if ASSET_TYPE_KEY not in ticker_info:
@@ -185,7 +181,7 @@ def create_overview_container(ticker):
 def create_news_feed_container(ticker):
   """creates the news feed container"""
   st.markdown("**News**")
-  market_manager = st.session_state[MARKET_MANAGER_CONFIG]
+  market_manager = get_market_manager()
   news = market_manager.search_news(ticker, 100)
   if news is not None and len(news) > 0:
     create_news_feed_df_container(pd.DataFrame(news), news_per_page=5, unique_key=ticker)
@@ -237,7 +233,7 @@ def show_portfolio_item_details_expander(portfolio_manager, portfolio_positions_
 
 def show_portfolio_tab():
   """show the portfolio tab"""
-  portfolio_manager = st.session_state[PORTFOLIO_MANAGER_CONFIG]
+  portfolio_manager = get_portfolio_manager()
   portfolio = portfolio_manager.get_portfolio()
   if len(portfolio) > 0:
     portfolio_container = st.container()
@@ -265,7 +261,7 @@ def show_analysis_tab():
           "Analysis is for informational and educational purposes and should not replace expert financial advice."
           "\n Please consult with a financial expert before making any trade decisions based on this analysis")
   if st.button(":material/search_insights: Analyze Portfolio"):
-    assistant = st.session_state[FINLIT_ASSISTANT_CONFIG]
+    assistant = get_assistant()
     assistant.reset()
     prompt = "analyze Portfolio"
     with st.status(":material/search_insights: Peforming Analysis") as status:
@@ -287,8 +283,6 @@ def accounts_page():
   st.set_page_config(layout="wide")
 
   if is_config_complete():
-    if PORTFOLIO_MANAGER_CONFIG not in st.session_state:
-      configure_application()
 
     left, right, _ = st.columns([1, 1, 10], gap="xxsmall")
     if left.button(ADD_PURCHASE_BUTTON):
