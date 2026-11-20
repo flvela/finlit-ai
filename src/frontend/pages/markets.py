@@ -7,10 +7,9 @@ import pandas as pd
 import altair as alt
 
 from frontend.components.common import create_news_feed_df_container
-from frontend.components.ui_config import configure_application
+from frontend.components.ui_config import get_market_manager
 from frontend.utils.common import (
   CONFIG_ERROR_MESSAGE,
-  MARKET_MANAGER_CONFIG,
   config_missing_message,
   is_config_complete
 )
@@ -49,7 +48,7 @@ ALTAIR_PRICE_LABEL = "Price"
 
 def show_index_col(idx: str, container: DeltaGenerator):
   """show the index column populated with market price, price change and change percentage"""
-  market_manager = st.session_state[MARKET_MANAGER_CONFIG]
+  market_manager = get_market_manager()
   ticker_info = market_manager.get_ticker_info(idx)
   ticker_name = ticker_info[Y_FINANCE_TICKER_INFO_SHORT_NAME]
   ticker_price = ticker_info[Y_FINANCE_TICKER_INFO_REGULAR_MARKET_PRICE]
@@ -67,7 +66,7 @@ def show_markets_container():
   """shows the markets container"""
   with st.container(border=True):
     st.write(US_INDICES_LABEL)
-    market_manager = st.session_state[MARKET_MANAGER_CONFIG]
+    market_manager = get_market_manager()
     us_market_indices_df = market_manager.get_us_market_indices_df()
     djia_col, nasdaq_col, sp_500_col = st.columns(3, border=True)
     show_index_col(DOW_JONES_TICKER, djia_col)
@@ -104,7 +103,7 @@ def show_news_container():
   """Shows the market news container"""
   with st.container(border=True):
     st.write(US_MARKETS_NEWS_LABEL)
-    market_manager = st.session_state[MARKET_MANAGER_CONFIG]
+    market_manager = get_market_manager()
     dow_news = pd.DataFrame(market_manager.search_news(DOW_JONES_TICKER, 100))
     nasdaq_news = pd.DataFrame(market_manager.search_news(NASDAQ_TICKER, 100))
     sp500_news = pd.DataFrame(market_manager.search_news(SP500_TICKER, 100))
@@ -117,7 +116,7 @@ def show_news_container():
 
 def show_sector_performance(sector_name):
   """show the sector performance"""
-  market_manager = st.session_state[MARKET_MANAGER_CONFIG]
+  market_manager = get_market_manager()
   ticker_info = market_manager.get_sector(sector_name).ticker.info
   name_col, change_col = st.columns(2)
   name_col.write(ticker_info[Y_FINANCE_TICKER_INFO_DISPLAY_NAME])
@@ -141,9 +140,6 @@ def markets_page():
   st.header("Markets", text_alignment="center")
   st.set_page_config(layout="wide")
   if is_config_complete():
-    if MARKET_MANAGER_CONFIG not in st.session_state:
-      configure_application()
-
     show_markets_container()
     show_news_container()
     show_tbill_and_oil_container()
